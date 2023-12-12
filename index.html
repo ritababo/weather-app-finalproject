@@ -12,9 +12,14 @@
   </head>
   <body>
     <div id="main-container">
-      <form id="city-search">
-        <input type="search" placeholder="enter your city" />
-      </form>
+      <div class="search-form">
+        <form id="city-search">
+          <input type="search" placeholder="enter your city" id="search-bar" />
+          <button type="submit" class="submit-btn">
+            <span class="material-symbols-rounded"> search </span>
+          </button>
+        </form>
+      </div>
       <h1 id="city">city</h1>
       <h2 id="current-date">Tuesday, 12 December 2023</h2>
       <div id="display-container">

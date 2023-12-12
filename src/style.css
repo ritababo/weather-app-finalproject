@@ -17,20 +17,23 @@ body {
 .search-form {
   padding-top: 28px;
   color: #a8a5a5;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   /* font-size: 14px; */
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
+#city-search {
+  margin: 0 auto;
+}
+
 #search-bar {
-  width: 220px;
+  width: 80%;
   height: 36px;
   border: 0;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.75);
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -38,8 +41,34 @@ body {
   background: transparent;
   border: 0;
   color: #a8a5a5;
-  /* font-size: 10px; */
-  position: fixed;
+  position: absolute;
   transform: translateX(-35px) translateY(5px);
   cursor: pointer;
+}
+
+h1 {
+  color: #fff;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 20px 0 5px;
+}
+
+h2 {
+  color: rgba(88, 88, 88, 0.54);
+  font-family: Roboto;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+}
+
+#display-container {
+  width: 138px;
+  height: 138px;
+  margin: 0 auto;
+  text-align: center;
 }

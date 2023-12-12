@@ -1,0 +1,7 @@
+1. Structure
+2. Design
+3. HTML
+4. CSS
+5. Search engine (JS)
+6. API integration
+7. Forecast (W8)

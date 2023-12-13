@@ -53,17 +53,18 @@ h1 {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin: 20px 0 5px;
+  margin: 20px 0 0;
 }
 
 h2 {
   color: rgba(88, 88, 88, 0.54);
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin: 0;
+  text-align: center;
+  margin: 5px 0 20px;
 }
 
 #display-container {
@@ -71,4 +72,38 @@ h2 {
   height: 138px;
   margin: 0 auto;
   text-align: center;
+}
+
+/* #icon-display {
+  width: 138px;
+  height: 138px;
+  margin: 0 auto;
+} */
+
+#icon-display span {
+  transform: scale(6.3) translateY(10px);
+  position: absolute;
+  color: rgba(238, 202, 77, 0.82);
+  margin: 0 auto;
+}
+
+#info-display {
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+  font-style: normal;
+  line-height: normal;
+  position: absolute;
+  transform: translate(0px, 30px);
+}
+
+.info-display-xl {
+  font-size: 90px;
+  font-weight: 500;
+}
+
+.info-display-xs {
+  font-size: 38px;
+  font-weight: 200;
+  position: absolute;
+  transform: translate(0px, 10px);
 }

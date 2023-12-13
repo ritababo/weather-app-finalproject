@@ -2,9 +2,13 @@ body {
   text-align: center;
 }
 
+.material-symbols-rounded {
+  font-variation-settings: "FILL" 0, "wght" 600, "GRAD" 0, "opsz" 24;
+}
+
 #main-container {
   width: 350px;
-  height: 580px;
+  height: 550px;
   border-radius: 30px;
   background: linear-gradient(
     180deg,
@@ -33,7 +37,7 @@ body {
   height: 36px;
   border: 0;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.65);
   text-align: center;
 }
 
@@ -81,8 +85,9 @@ h2 {
 } */
 
 #icon-display span {
-  transform: scale(6.3) translateY(10px);
-  position: absolute;
+  /* transform: scale(6.3) translateY(10px);
+  position: absolute; */
+  font-size: 138px;
   color: rgba(238, 202, 77, 0.82);
   margin: 0 auto;
 }
@@ -93,7 +98,7 @@ h2 {
   font-style: normal;
   line-height: normal;
   position: absolute;
-  transform: translate(0px, 30px);
+  transform: translate(0px, -120px);
 }
 
 .info-display-xl {
@@ -106,4 +111,79 @@ h2 {
   font-weight: 200;
   position: absolute;
   transform: translate(0px, 10px);
+}
+
+#current-info {
+  color: #d5b33b;
+  font-family: "Afacad", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#current-info-xs {
+  color: #95770b;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.current-high-temp {
+  padding-right: 3px;
+}
+
+.current-low-temp {
+  padding-left: 3px;
+}
+
+#bottom-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.bottom-box {
+  width: 56px;
+  height: 137px;
+  flex-shrink: 0;
+  border-radius: 29px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.weekday {
+  color: rgba(149, 119, 11, 0.9);
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 15px;
+}
+
+.bottom-box span {
+  color: rgba(238, 202, 77, 0.82);
+  font-size: 32px;
+}
+
+.bottom-box .high-temp {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  margin: 12px 0 5px;
+}
+
+.bottom-box .low-temp {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 200;
+  margin: 5px 0;
 }

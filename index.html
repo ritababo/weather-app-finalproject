@@ -20,88 +20,94 @@
     />
   </head>
   <body>
-    <div id="main-container">
-      <div class="search-form">
-        <form id="city-search">
-          <input type="search" placeholder="enter your city" id="search-bar" />
-          <button type="submit" class="submit-btn">
-            <span class="material-symbols-rounded"> search </span>
-          </button>
-        </form>
+    <div class="main">
+      <div id="container">
+        <div class="search-form">
+          <form id="city-search">
+            <input
+              type="search"
+              placeholder="enter your city"
+              id="search-bar"
+            />
+            <button type="submit" class="submit-btn">
+              <span class="material-symbols-rounded"> search </span>
+            </button>
+          </form>
+        </div>
+        <h1 id="city">Lisbon</h1>
+        <h2 id="current-date">Tuesday, 12 December 2023</h2>
+        <div id="display-container">
+          <div id="icon-display">
+            <span class="material-symbols-rounded"> sunny </span>
+          </div>
+          <div id="info-display">
+            <span class="info-display-xl">25</span>
+            <span class="info-display-xs">ºC</span>
+          </div>
+        </div>
+        <div id="current-info">sunny</div>
+        <div id="current-info-xs">
+          <span class="current-high-temp">H: 29º</span>
+          <span class="current-low-temp">L: 17º</span>
+        </div>
+        <div id="bottom-container">
+          <div id="box-1" class="bottom-box">
+            <p id="weekday-box-1" class="weekday">Wed</p>
+            <div class="forecast-icon">
+              <span class="material-symbols-rounded"> partly_cloudy_day </span>
+            </div>
+            <p id="high-box-1" class="high-temp">19º</p>
+            <p id="low-box-1" class="low-temp">11º</p>
+          </div>
+          <div id="box-2" class="bottom-box">
+            <p id="weekday-box-2" class="weekday">Thu</p>
+            <div class="forecast-icon">
+              <span class="material-symbols-rounded"> partly_cloudy_day </span>
+            </div>
+            <p id="high-box-2" class="high-temp">19º</p>
+            <p id="low-box-2" class="low-temp">11º</p>
+          </div>
+          <div id="box-3" class="bottom-box">
+            <p id="weekday-box-3" class="weekday">Fri</p>
+            <div class="forecast-icon">
+              <span class="material-symbols-rounded"> partly_cloudy_day </span>
+            </div>
+            <p id="high-box-3" class="high-temp">19º</p>
+            <p id="low-box-3" class="low-temp">11º</p>
+          </div>
+          <div id="box-4" class="bottom-box">
+            <p id="weekday-box-4" class="weekday">Sat</p>
+            <div class="forecast-icon">
+              <span class="material-symbols-rounded"> partly_cloudy_day </span>
+            </div>
+            <p id="high-box-4" class="high-temp">19º</p>
+            <p id="low-box-4" class="low-temp">11º</p>
+          </div>
+          <div id="box-5" class="bottom-box">
+            <p id="weekday-box-5" class="weekday">Sun</p>
+            <div class="forecast-icon">
+              <span class="material-symbols-rounded"> partly_cloudy_day </span>
+            </div>
+            <p id="high-box-5" class="high-temp">19º</p>
+            <p id="low-box-5" class="low-temp">11º</p>
+          </div>
+        </div>
       </div>
-      <h1 id="city">Lisbon</h1>
-      <h2 id="current-date">Tuesday, 12 December 2023</h2>
-      <div id="display-container">
-        <div id="icon-display">
-          <span class="material-symbols-rounded"> sunny </span>
-        </div>
-        <div id="info-display">
-          <span class="info-display-xl">25</span>
-          <span class="info-display-xs">ºC</span>
-        </div>
-      </div>
-      <div id="current-info">sunny</div>
-      <div id="current-info-xs">
-        <span class="current-high-temp">H: 29º</span>
-        <span class="current-low-temp">L: 17º</span>
-      </div>
-      <div id="bottom-container">
-        <div id="box-1" class="bottom-box">
-          <p id="weekday-box-1" class="weekday">Wed</p>
-          <div class="forecast-icon">
-            <span class="material-symbols-rounded"> partly_cloudy_day </span>
-          </div>
-          <p id="high-box-1" class="high-temp">19º</p>
-          <p id="low-box-1" class="low-temp">11º</p>
-        </div>
-        <div id="box-2" class="bottom-box">
-          <p id="weekday-box-2" class="weekday">Thu</p>
-          <div class="forecast-icon">
-            <span class="material-symbols-rounded"> partly_cloudy_day </span>
-          </div>
-          <p id="high-box-2" class="high-temp">19º</p>
-          <p id="low-box-2" class="low-temp">11º</p>
-        </div>
-        <div id="box-3" class="bottom-box">
-          <p id="weekday-box-3" class="weekday">Fri</p>
-          <div class="forecast-icon">
-            <span class="material-symbols-rounded"> partly_cloudy_day </span>
-          </div>
-          <p id="high-box-3" class="high-temp">19º</p>
-          <p id="low-box-3" class="low-temp">11º</p>
-        </div>
-        <div id="box-4" class="bottom-box">
-          <p id="weekday-box-4" class="weekday">Sat</p>
-          <div class="forecast-icon">
-            <span class="material-symbols-rounded"> partly_cloudy_day </span>
-          </div>
-          <p id="high-box-4" class="high-temp">19º</p>
-          <p id="low-box-4" class="low-temp">11º</p>
-        </div>
-        <div id="box-5" class="bottom-box">
-          <p id="weekday-box-5" class="weekday">Sun</p>
-          <div class="forecast-icon">
-            <span class="material-symbols-rounded"> partly_cloudy_day </span>
-          </div>
-          <p id="high-box-5" class="high-temp">19º</p>
-          <p id="low-box-5" class="low-temp">11º</p>
-        </div>
-      </div>
+      <footer>
+        <p>
+          This project was coded by
+          <a href="https://github.com/ritababo" target="_blank">Rita Babo</a>
+          <br />
+          Open-sourced on
+          <a href="https://github.com/ritababo?tab=repositories" target="_blank"
+            >GitHub</a
+          >
+          and hosted on
+          <a href="https://ritababo-weather-app.netlify.app/" target="_blank"
+            >Netlify</a
+          >
+        </p>
+      </footer>
     </div>
-    <footer>
-      <p>
-        This project was coded by
-        <a href="https://github.com/ritababo" target="_blank">Rita Babo</a>
-        <br />
-        Open-sourced on
-        <a href="https://github.com/ritababo?tab=repositories" target="_blank"
-          >GitHub</a
-        >
-        and hosted on
-        <a href="https://ritababo-weather-app.netlify.app/" target="_blank"
-          >Netlify</a
-        >
-      </p>
-    </footer>
   </body>
 </html>

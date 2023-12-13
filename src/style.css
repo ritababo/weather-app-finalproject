@@ -88,12 +88,6 @@ h2 {
   text-align: center;
 }
 
-/* #icon-display {
-  width: 138px;
-  height: 138px;
-  margin: 0 auto;
-} */
-
 #icon-display span {
   /* transform: scale(6.3) translateY(10px);
   position: absolute; */
@@ -109,6 +103,8 @@ h2 {
   line-height: normal;
   position: absolute;
   transform: translate(0px, -120px);
+  display: flex;
+  justify-content: center;
 }
 
 .info-display-xl {
@@ -119,7 +115,7 @@ h2 {
 .info-display-xs {
   font-size: 38px;
   font-weight: 200;
-  position: absolute;
+  /* position: absolute; */
   transform: translate(0px, 10px);
 }
 

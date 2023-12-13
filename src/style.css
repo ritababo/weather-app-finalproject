@@ -103,7 +103,7 @@ h2 {
   color: #fff;
   font-style: normal;
   line-height: normal;
-  position: absolute;
+  /* position: absolute; */
   transform: translate(0px, -120px);
   display: flex;
   justify-content: center;

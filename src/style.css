@@ -15,7 +15,7 @@ body {
     rgba(238, 202, 77, 0.82) 0%,
     rgba(244, 230, 181, 0.56) 100%
   );
-  margin: 80px auto;
+  margin: 80px auto 30px auto;
 }
 
 .search-form {
@@ -144,7 +144,7 @@ h2 {
 #bottom-container {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 20px;
+  margin: 20px auto;
 }
 
 .bottom-box {
@@ -162,10 +162,18 @@ h2 {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 15px;
+  margin: 17px auto auto;
 }
 
-.bottom-box span {
+.forecast-icon {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 9px auto;
+}
+
+.forecast-icon span {
   color: rgba(238, 202, 77, 0.82);
   font-size: 32px;
 }
@@ -176,7 +184,7 @@ h2 {
   font-size: 13px;
   font-style: normal;
   font-weight: 500;
-  margin: 12px 0 5px;
+  margin: 8px 0 5px;
 }
 
 .bottom-box .low-temp {
@@ -186,4 +194,20 @@ h2 {
   font-style: normal;
   font-weight: 200;
   margin: 5px 0;
+}
+
+footer p {
+  color: rgba(0, 0, 0, 0.59);
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+footer a {
+  color: rgba(0, 0, 0, 0.59);
+  font-weight: 500;
+  text-decoration-line: underline;
 }

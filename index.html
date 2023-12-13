@@ -22,9 +22,9 @@
   </head>
   <body>
     <div class="main">
-      <div id="container">
+      <div class="container" id="container">
         <div class="search-form">
-          <form id="city-search">
+          <form class="city-search" id="city-search">
             <button type="submit" class="submit-btn">
               <span class="material-symbols-rounded"> search </span>
             </button>
@@ -32,67 +32,83 @@
               type="search"
               placeholder="enter your city"
               required
+              class="search-bar"
               id="search-bar"
             />
           </form>
         </div>
-        <h1 id="city"></h1>
-        <h2 id="current-date">Tuesday, 12 December 2023</h2>
-        <div id="display-container">
-          <div id="icon-display">
+        <h1 class="city" id="city"></h1>
+        <h2 class="current-date" id="current-date">
+          Tuesday, 12 December 2023
+        </h2>
+        <div class="display-container" id="display-container">
+          <div class="icon-display" id="icon-display">
             <span class="material-symbols-rounded"> sunny </span>
           </div>
-          <div id="info-display">
+          <div class="info-display" id="info-display">
             <span class="info-display-xl" id="current-temperature"></span>
             <span class="info-display-xs">ºC</span>
           </div>
         </div>
-        <div id="current-info">sunny</div>
-        <div id="current-info-xs">
+        <div class="current-info" id="current-info">sunny</div>
+        <div class="current-info-xs" id="current-info-xs">
           <span class="current-high-temp">H: 29º</span>
           <span class="current-low-temp">L: 17º</span>
         </div>
-        <div id="bottom-container">
-          <div id="box-1" class="bottom-box">
-            <p id="weekday-box-1" class="weekday">Wed</p>
+        <div class="bottom-container" id="bottom-container">
+          <div class="bottom-box" id="box-1">
+            <p class="weekday" id="weekday-box-1">Wed</p>
             <div class="forecast-icon">
               <span class="material-symbols-rounded"> partly_cloudy_day </span>
             </div>
-            <p id="high-box-1" class="high-temp">19º</p>
-            <p id="low-box-1" class="low-temp">11º</p>
+            <p class="high-temp" id="high-box-1">19º</p>
+            <p class="low-temp" id="low-box-1">11º</p>
           </div>
-          <div id="box-2" class="bottom-box">
-            <p id="weekday-box-2" class="weekday">Thu</p>
+          <div class="bottom-box" id="box-2">
+            <p class="weekday" id="weekday-box-2">Wed</p>
             <div class="forecast-icon">
               <span class="material-symbols-rounded"> partly_cloudy_day </span>
             </div>
-            <p id="high-box-2" class="high-temp">19º</p>
-            <p id="low-box-2" class="low-temp">11º</p>
+            <p class="high-temp" id="high-box-2">19º</p>
+            <p class="low-temp" id="low-box-2">11º</p>
           </div>
-          <div id="box-3" class="bottom-box">
-            <p id="weekday-box-3" class="weekday">Fri</p>
+          <div class="bottom-box" id="box-3">
+            <p class="weekday" id="weekday-box-3">Wed</p>
             <div class="forecast-icon">
               <span class="material-symbols-rounded"> partly_cloudy_day </span>
             </div>
-            <p id="high-box-3" class="high-temp">19º</p>
-            <p id="low-box-3" class="low-temp">11º</p>
+            <p class="high-temp" id="high-box-3">19º</p>
+            <p class="low-temp" id="low-box-3">11º</p>
           </div>
-          <div id="box-4" class="bottom-box">
-            <p id="weekday-box-4" class="weekday">Sat</p>
+          <div class="bottom-box" id="box-4">
+            <p class="weekday" id="weekday-box-4">Wed</p>
             <div class="forecast-icon">
               <span class="material-symbols-rounded"> partly_cloudy_day </span>
             </div>
-            <p id="high-box-4" class="high-temp">19º</p>
-            <p id="low-box-4" class="low-temp">11º</p>
+            <p class="high-temp" id="high-box-4">19º</p>
+            <p class="low-temp" id="low-box-4">11º</p>
           </div>
-          <div id="box-5" class="bottom-box">
-            <p id="weekday-box-5" class="weekday">Sun</p>
+          <div class="bottom-box" id="box-5">
+            <p class="weekday" id="weekday-box-5">Wed</p>
             <div class="forecast-icon">
               <span class="material-symbols-rounded"> partly_cloudy_day </span>
             </div>
-            <p id="high-box-5" class="high-temp">19º</p>
-            <p id="low-box-5" class="low-temp">11º</p>
+            <p class="high-temp" id="high-box-5">19º</p>
+            <p class="low-temp" id="low-box-5">11º</p>
           </div>
+        </div>
+      </div>
+      <div class="selector-wrapper">
+        <div class="app-selector" id="app-selector">
+          <button id="lunar">
+            <span class="material-symbols-rounded"> nights_stay </span>
+          </button>
+          <button id="weather">
+            <span class="material-symbols-rounded"> weather_mix </span>
+          </button>
+          <button id="humidity-wind">
+            <span class="material-symbols-rounded"> dew_point </span>
+          </button>
         </div>
       </div>
       <footer>

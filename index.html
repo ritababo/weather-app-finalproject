@@ -13,119 +13,133 @@
       href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600&family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/qweather-icons@1.6.0/font/qweather-icons.css"
+    />
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="container" id="container">
-        <div class="search-form">
-          <form class="city-search" id="city-search">
-            <button type="submit" class="submit-btn">
-              <span class="material-symbols-rounded"> search </span>
+    <div class="wrapper">
+      <div id="weather">
+        <div class="container">
+          <div class="search-form">
+            <form class="city-search" id="city-search">
+              <button type="submit" class="submit-btn">
+                <span class="material-symbols-rounded"> search </span>
+              </button>
+              <input
+                type="search"
+                placeholder="enter your city"
+                required
+                class="search-bar"
+                id="search-bar"
+              />
+            </form>
+          </div>
+          <h1 class="city" id="city">Porto</h1>
+          <h2 class="current-date" id="current-date">
+            Tuesday, 12 December 2023
+          </h2>
+          <div class="display-container" id="display-container">
+            <div class="icon-display" id="icon-display">
+              <i class="qi-100-fill"></i>
+            </div>
+            <div class="info-display" id="info-display">
+              <span class="info-display-xl" id="current-temperature"></span>
+              <span class="info-display-xs">ºC</span>
+            </div>
+          </div>
+          <div class="current-info" id="current-info">sunny</div>
+          <div class="current-info-xs" id="current-info-xs">
+            <span class="current-high-temp">H: 29º</span>
+            <span class="current-low-temp">L: 17º</span>
+          </div>
+          <div class="bottom-container" id="bottom-container">
+            <div class="bottom-box" id="box-1">
+              <p class="weekday" id="weekday-box-1">Wed</p>
+              <div class="bottom-box-icon">
+                <i class="qi-150"></i>
+                <div class="moonrise-arrow">
+                  <span class="material-symbols-rounded"> arrow_upward </span>
+                </div>
+              </div>
+              <p class="upper-text" id="high-box-1">19º</p>
+              <p class="bottom-text" id="low-box-1">11º</p>
+            </div>
+            <div class="bottom-box" id="box-2">
+              <p class="weekday" id="weekday-box-2">Wed</p>
+              <div class="bottom-box-icon">
+                <i class="qi-103"></i>
+              </div>
+              <p class="upper-text" id="high-box-2">19º</p>
+              <p class="bottom-text" id="low-box-2">11º</p>
+            </div>
+            <div class="bottom-box" id="box-3">
+              <p class="weekday" id="weekday-box-3">Wed</p>
+              <div class="bottom-box-icon">
+                <i class="qi-103"></i>
+              </div>
+              <p class="upper-text" id="high-box-3">19º</p>
+              <p class="bottom-text" id="low-box-3">11º</p>
+            </div>
+            <div class="bottom-box" id="box-4">
+              <p class="weekday" id="weekday-box-4">Wed</p>
+              <div class="bottom-box-icon">
+                <i class="qi-103"></i>
+              </div>
+              <p class="upper-text" id="high-box-4">19º</p>
+              <p class="bottom-text" id="low-box-4">11º</p>
+            </div>
+            <div class="bottom-box" id="box-5">
+              <p class="weekday" id="weekday-box-5">Wed</p>
+              <div class="bottom-box-icon">
+                <i class="qi-150"></i>
+                <div class="moonset-arrow">
+                  <span class="material-symbols-rounded"> arrow_downward </span>
+                </div>
+              </div>
+              <p class="upper-text" id="high-box-5">19º</p>
+              <p class="bottom-text" id="low-box-5">11º</p>
+            </div>
+          </div>
+        </div>
+        <div class="selector-wrapper">
+          <div class="app-selector" id="app-selector">
+            <button id="lunar-app" alt="Lunar calendar">
+              <i class="qi-152-fill"></i>
             </button>
-            <input
-              type="search"
-              placeholder="enter your city"
-              required
-              class="search-bar"
-              id="search-bar"
-            />
-          </form>
-        </div>
-        <h1 class="city" id="city"></h1>
-        <h2 class="current-date" id="current-date">
-          Tuesday, 12 December 2023
-        </h2>
-        <div class="display-container" id="display-container">
-          <div class="icon-display" id="icon-display">
-            <span class="material-symbols-rounded"> sunny </span>
-          </div>
-          <div class="info-display" id="info-display">
-            <span class="info-display-xl" id="current-temperature"></span>
-            <span class="info-display-xs">ºC</span>
+            <button id="weather-app" alt="Weather forecast">
+              <i class="qi-2205"></i>
+            </button>
+            <button id="humidity-wind-app" alt="Humidity and wind">
+              <i class="qi-1036"></i>
+            </button>
           </div>
         </div>
-        <div class="current-info" id="current-info">sunny</div>
-        <div class="current-info-xs" id="current-info-xs">
-          <span class="current-high-temp">H: 29º</span>
-          <span class="current-low-temp">L: 17º</span>
-        </div>
-        <div class="bottom-container" id="bottom-container">
-          <div class="bottom-box" id="box-1">
-            <p class="weekday" id="weekday-box-1">Wed</p>
-            <div class="forecast-icon">
-              <span class="material-symbols-rounded"> partly_cloudy_day </span>
-            </div>
-            <p class="high-temp" id="high-box-1">19º</p>
-            <p class="low-temp" id="low-box-1">11º</p>
-          </div>
-          <div class="bottom-box" id="box-2">
-            <p class="weekday" id="weekday-box-2">Wed</p>
-            <div class="forecast-icon">
-              <span class="material-symbols-rounded"> partly_cloudy_day </span>
-            </div>
-            <p class="high-temp" id="high-box-2">19º</p>
-            <p class="low-temp" id="low-box-2">11º</p>
-          </div>
-          <div class="bottom-box" id="box-3">
-            <p class="weekday" id="weekday-box-3">Wed</p>
-            <div class="forecast-icon">
-              <span class="material-symbols-rounded"> partly_cloudy_day </span>
-            </div>
-            <p class="high-temp" id="high-box-3">19º</p>
-            <p class="low-temp" id="low-box-3">11º</p>
-          </div>
-          <div class="bottom-box" id="box-4">
-            <p class="weekday" id="weekday-box-4">Wed</p>
-            <div class="forecast-icon">
-              <span class="material-symbols-rounded"> partly_cloudy_day </span>
-            </div>
-            <p class="high-temp" id="high-box-4">19º</p>
-            <p class="low-temp" id="low-box-4">11º</p>
-          </div>
-          <div class="bottom-box" id="box-5">
-            <p class="weekday" id="weekday-box-5">Wed</p>
-            <div class="forecast-icon">
-              <span class="material-symbols-rounded"> partly_cloudy_day </span>
-            </div>
-            <p class="high-temp" id="high-box-5">19º</p>
-            <p class="low-temp" id="low-box-5">11º</p>
-          </div>
-        </div>
+        <footer>
+          <p>
+            This project was coded by
+            <a href="https://github.com/ritababo" target="_blank">Rita Babo</a>
+            <br />
+            Open-sourced on
+            <a
+              href="https://github.com/ritababo?tab=repositories"
+              target="_blank"
+              >GitHub</a
+            >
+            and hosted on
+            <a href="https://ritababo-weather-app.netlify.app/" target="_blank"
+              >Netlify</a
+            >
+          </p>
+        </footer>
       </div>
-      <div class="selector-wrapper">
-        <div class="app-selector" id="app-selector">
-          <button id="lunar">
-            <span class="material-symbols-rounded"> nights_stay </span>
-          </button>
-          <button id="weather">
-            <span class="material-symbols-rounded"> weather_mix </span>
-          </button>
-          <button id="humidity-wind">
-            <span class="material-symbols-rounded"> dew_point </span>
-          </button>
-        </div>
-      </div>
-      <footer>
-        <p>
-          This project was coded by
-          <a href="https://github.com/ritababo" target="_blank">Rita Babo</a>
-          <br />
-          Open-sourced on
-          <a href="https://github.com/ritababo?tab=repositories" target="_blank"
-            >GitHub</a
-          >
-          and hosted on
-          <a href="https://ritababo-weather-app.netlify.app/" target="_blank"
-            >Netlify</a
-          >
-        </p>
-      </footer>
     </div>
     <script src="src/javascript.js"></script>
   </body>

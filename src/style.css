@@ -3,11 +3,7 @@ body {
   margin: 0;
 }
 
-.material-symbols-rounded {
-  font-variation-settings: "FILL" 0, "wght" 600, "GRAD" 0, "opsz" 24;
-}
-
-.main {
+#weather {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -15,7 +11,15 @@ body {
   flex-direction: column;
 }
 
-.container {
+#lunar {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#weather .container {
   width: 350px;
   height: 550px;
   border-radius: 30px;
@@ -26,6 +30,18 @@ body {
   );
   order: 1;
   /* margin: 10% auto 5% auto; */
+}
+
+#lunar .container {
+  width: 350px;
+  height: 550px;
+  border-radius: 30px;
+  order: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(131, 102, 170, 0.95) 1.56%,
+    rgba(219, 199, 244, 0.47) 100%
+  );
 }
 
 .search-form {
@@ -72,7 +88,7 @@ body {
   margin: 20px 0 0;
 }
 
-.current-date {
+#weather .current-date {
   color: rgba(88, 88, 88, 0.54);
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -83,6 +99,17 @@ body {
   margin: 5px 0 20px;
 }
 
+#lunar .current-date {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  margin: 5px 0 20px;
+  color: rgba(255, 255, 255, 0.58);
+}
+
 .display-container {
   width: 138px;
   height: 138px;
@@ -90,15 +117,32 @@ body {
   text-align: center;
 }
 
-.icon-display span {
+#weather .icon-display i {
   /* transform: scale(6.3) translateY(10px);
   position: absolute; */
-  font-size: 138px;
+  font-size: 130px;
   color: rgba(238, 202, 77, 0.82);
   margin: 0 auto;
 }
 
-.info-display {
+#lunar .icon-display i {
+  font-size: 130px;
+  color: #8a66aa;
+  margin: 0 auto;
+}
+
+#weather .info-display {
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+  font-style: normal;
+  line-height: normal;
+  /* position: absolute; */
+  transform: translate(0px, -120px);
+  display: flex;
+  justify-content: center;
+}
+
+#lunar .info-display {
   font-family: "Roboto", sans-serif;
   color: #fff;
   font-style: normal;
@@ -114,14 +158,20 @@ body {
   font-weight: 500;
 }
 
-.info-display-xs {
+#weather .info-display-xs {
   font-size: 38px;
   font-weight: 200;
   /* position: absolute; */
   transform: translate(0px, 10px);
 }
 
-.current-info {
+#lunar .info-display-xs {
+  font-size: 38px;
+  font-weight: 200;
+  transform: translate(-10px, 10px);
+}
+
+#weather .current-info {
   color: #d5b33b;
   font-family: "Afacad", sans-serif;
   font-size: 36px;
@@ -132,8 +182,28 @@ body {
   margin-bottom: 20px;
 }
 
-.current-info-xs {
+#lunar .current-info {
+  color: rgba(47, 15, 105, 0.74);
+  font-family: "Afacad", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#weather .current-info-xs {
   color: #95770b;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+#lunar .current-info-xs {
+  color: #3e128e;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-style: normal;
@@ -149,13 +219,22 @@ body {
   padding-left: 3px;
 }
 
-.bottom-container {
+#weather .bottom-container {
   display: flex;
   justify-content: space-evenly;
   margin: 20px auto;
+  height: 137px;
 }
 
-.bottom-box {
+#lunar .bottom-container {
+  margin: 18px auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  height: 137px;
+}
+
+#weather .bottom-box {
   width: 56px;
   height: 137px;
   flex-shrink: 0;
@@ -163,7 +242,33 @@ body {
   background: rgba(255, 255, 255, 0.76);
 }
 
-.weekday {
+#lunar .bottom-box {
+  width: 56px;
+  height: 99px;
+  border-radius: 29px;
+}
+
+#lunar #box-1,
+#box-5 {
+  background: rgba(255, 255, 255, 0.45);
+  align-self: flex-end;
+}
+
+#lunar #box-2,
+#box-4 {
+  background: rgba(255, 255, 255, 0.6);
+  align-self: center;
+}
+
+#lunar #box-3 {
+  width: 56px;
+  height: 81px;
+  border-radius: 29px;
+  background: rgba(62, 18, 142, 0.41);
+  align-self: flex-start;
+}
+
+#weather .weekday {
   color: rgba(149, 119, 11, 0.9);
   font-family: "Roboto", sans-serif;
   font-size: 12px;
@@ -173,7 +278,14 @@ body {
   margin: 17px auto auto;
 }
 
-.forecast-icon {
+#lunar .weekday {
+  height: 0;
+  width: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#weather .bottom-box-icon {
   height: 40px;
   display: flex;
   justify-content: center;
@@ -181,12 +293,75 @@ body {
   margin: 9px auto;
 }
 
-.forecast-icon span {
+#weather .bottom-box-icon i {
   color: rgba(238, 202, 77, 0.82);
   font-size: 32px;
 }
 
-.bottom-box .high-temp {
+#lunar #box-1 .bottom-box-icon,
+#lunar #box-2 .bottom-box-icon,
+#lunar #box-4 .bottom-box-icon,
+#lunar #box-5 .bottom-box-icon {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 9px auto;
+}
+
+#lunar #box-3 .bottom-box-icon {
+  height: 81px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: 9px auto; */
+}
+
+#lunar .bottom-box-icon i {
+  color: rgba(62, 18, 142, 0.82);
+  font-size: 26px;
+}
+
+#lunar #box-3 .bottom-box-icon i {
+  color: rgba(62, 18, 142, 1);
+  font-size: 32px;
+}
+
+#weather .moonrise-arrow {
+  height: 0;
+  width: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#weather .moonset-arrow {
+  height: 0;
+  width: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.moonrise-arrow {
+  position: absolute;
+  transform: translate(5px, -5px);
+}
+
+.moonrise-arrow span {
+  color: rgba(62, 18, 142, 0.82);
+  font-size: 18px;
+}
+
+.moonset-arrow {
+  position: absolute;
+  transform: translate(5px, -5px);
+}
+
+.moonset-arrow span {
+  color: rgba(62, 18, 142, 0.82);
+  font-size: 18px;
+}
+
+#weather .upper-text {
   color: #000;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -195,7 +370,7 @@ body {
   margin: 8px 0 5px;
 }
 
-.bottom-box .low-temp {
+#weather .bottom-text {
   color: #000;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -203,6 +378,71 @@ body {
   font-weight: 200;
   margin: 5px 0;
 }
+
+#lunar #high-box-1,
+#lunar #high-box-5 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  margin: 13px 0 5px;
+}
+
+#lunar #low-box-1,
+#lunar #low-box-5 {
+  height: 0;
+  width: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#lunar #high-box-2,
+#lunar #high-box-4 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  margin: -5px 0 5px;
+}
+
+#lunar #low-box-2,
+#lunar #low-box-4 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  margin: -2px 0 5px;
+}
+
+#lunar #high-box-3,
+#lunar #low-box-3 {
+  height: 0;
+  width: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* #lunar .bottom-text {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 200;
+  margin: 5px 0;
+} */
+
+/* #lunar .bottom-box #box-1,
+#box-5 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  margin: 8px 0 5px;
+} */
 
 .selector-wrapper {
   order: 2;
@@ -215,7 +455,7 @@ body {
   width: 136px;
 }
 
-#lunar {
+#lunar-app {
   background: linear-gradient(
     180deg,
     rgb(125 89 175) 1.56%,
@@ -229,20 +469,20 @@ body {
   cursor: pointer;
 }
 
-#lunar:hover {
+#lunar-app:hover {
   transform: scale(1.1);
   transition: all 200ms ease-in-out;
 }
 
-#lunar span {
+#lunar-app i {
   font-size: 18px;
 }
 
-#weather {
+#weather-app {
   background: linear-gradient(
     180deg,
     rgb(235 193 48) 1.56%,
-    rgb(255 241 191) 100%
+    rgb(243, 227, 167) 100%
   );
   border-radius: 30px;
   width: 30px;
@@ -252,16 +492,16 @@ body {
   cursor: pointer;
 }
 
-#weather:hover {
+#weather-app:hover {
   transform: scale(1.1);
   transition: all 200ms ease-in-out;
 }
 
-#weather span {
+#weather-app i {
   font-size: 18px;
 }
 
-#humidity-wind {
+#humidity-wind-app {
   background: linear-gradient(
     180deg,
     rgb(50 147 136) 1.56%,
@@ -275,12 +515,12 @@ body {
   cursor: pointer;
 }
 
-#humidity-wind:hover {
+#humidity-wind-app:hover {
   transform: scale(1.1);
   transition: all 200ms ease-in-out;
 }
 
-#humidity-wind span {
+#humidity-wind-app i {
   font-size: 18px;
 }
 
@@ -303,4 +543,11 @@ footer a {
   color: rgba(0, 0, 0, 0.59);
   font-weight: 500;
   text-decoration-line: underline;
+}
+
+.hidden {
+  height: 0;
+  width: 0;
+  margin: 0;
+  overflow: hidden;
 }

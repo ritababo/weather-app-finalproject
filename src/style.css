@@ -3,8 +3,8 @@ body {
   margin: 0;
 }
 
-#weather,
-#humidity-wind {
+.weather-app,
+.humidity-wind-app {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@ body {
   flex-direction: column;
 }
 
-#lunar {
+.lunar-app {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -27,7 +27,7 @@ body {
   order: 1;
 }
 
-#weather .container {
+.weather-app .container {
   background: linear-gradient(
     180deg,
     rgba(238, 202, 77, 0.82) 0%,
@@ -35,7 +35,7 @@ body {
   );
 }
 
-#lunar .container {
+.lunar-app .container {
   background: linear-gradient(
     180deg,
     rgba(131, 102, 170, 0.95) 1.56%,
@@ -43,7 +43,7 @@ body {
   );
 }
 
-#humidity-wind .container {
+.humidity-wind-app .container {
   background: linear-gradient(
     180deg,
     rgba(54, 156, 144, 0.82) 0%,
@@ -95,7 +95,7 @@ body {
   margin: 20px 0 0;
 }
 
-#weather .current-date {
+.weather-app .current-date {
   color: rgba(88, 88, 88, 0.54);
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -106,8 +106,8 @@ body {
   margin: 5px 0 20px;
 }
 
-#lunar .current-date,
-#humidity-wind .current-date {
+.lunar-app .current-date,
+.humidity-wind-app .current-date {
   font-family: "Roboto", sans-serif;
   font-size: 13px;
   font-style: normal;
@@ -125,7 +125,7 @@ body {
   text-align: center;
 }
 
-#weather .icon-display i {
+.weather-app .icon-display i {
   /* transform: scale(6.3) translateY(10px);
   position: absolute; */
   font-size: 130px;
@@ -133,13 +133,13 @@ body {
   margin: 0 auto;
 }
 
-#lunar .icon-display i {
+.lunar-app .icon-display i {
   font-size: 130px;
   color: #8a66aa;
   margin: 0 auto;
 }
 
-#weather .info-display {
+.weather-app .info-display {
   font-family: "Roboto", sans-serif;
   color: #fff;
   font-style: normal;
@@ -150,7 +150,7 @@ body {
   justify-content: center;
 }
 
-#lunar .info-display {
+.lunar-app .info-display {
   font-family: "Roboto", sans-serif;
   color: #fff;
   font-style: normal;
@@ -166,20 +166,20 @@ body {
   font-weight: 500;
 }
 
-#weather .info-display-xs {
+.weather-app .info-display-xs {
   font-size: 38px;
   font-weight: 200;
   /* position: absolute; */
   transform: translate(0px, 10px);
 }
 
-#lunar .info-display-xs {
+.lunar-app .info-display-xs {
   font-size: 38px;
   font-weight: 200;
   transform: translate(-10px, 10px);
 }
 
-#weather .current-info {
+.weather-app .current-info {
   color: #d5b33b;
   font-family: "Afacad", sans-serif;
   font-size: 36px;
@@ -190,7 +190,7 @@ body {
   margin-bottom: 20px;
 }
 
-#lunar .current-info {
+.lunar-app .current-info {
   color: rgba(47, 15, 105, 0.74);
   font-family: "Afacad", sans-serif;
   font-size: 36px;
@@ -201,7 +201,7 @@ body {
   margin-bottom: 20px;
 }
 
-#weather .current-info-xs {
+.weather-app .current-info-xs {
   color: #95770b;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
@@ -210,7 +210,7 @@ body {
   line-height: 1.6;
 }
 
-#lunar .current-info-xs {
+.lunar-app .current-info-xs {
   color: #3e128e;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
@@ -227,14 +227,14 @@ body {
   padding-left: 3px;
 }
 
-#weather .bottom-container {
+.weather-app .bottom-container {
   display: flex;
   justify-content: space-evenly;
   margin: 20px auto;
   height: 137px;
 }
 
-#lunar .bottom-container {
+.lunar-app .bottom-container {
   margin: 18px auto;
   display: flex;
   align-items: flex-start;
@@ -242,7 +242,7 @@ body {
   height: 137px;
 }
 
-#weather .bottom-box {
+.weather-app .bottom-box {
   width: 56px;
   height: 137px;
   flex-shrink: 0;
@@ -250,25 +250,25 @@ body {
   background: rgba(255, 255, 255, 0.76);
 }
 
-#lunar .bottom-box {
+.lunar-app .bottom-box {
   width: 56px;
   height: 99px;
   border-radius: 29px;
 }
 
-#lunar #box-1,
+.lunar-app #box-1,
 #box-5 {
   background: rgba(255, 255, 255, 0.45);
   align-self: flex-end;
 }
 
-#lunar #box-2,
+.lunar-app #box-2,
 #box-4 {
   background: rgba(255, 255, 255, 0.6);
   align-self: center;
 }
 
-#lunar #box-3 {
+.lunar-app #box-3 {
   width: 56px;
   height: 81px;
   border-radius: 29px;
@@ -276,7 +276,7 @@ body {
   align-self: flex-start;
 }
 
-#weather .weekday {
+.weather-app .weekday {
   color: rgba(149, 119, 11, 0.9);
   font-family: "Roboto", sans-serif;
   font-size: 12px;
@@ -286,14 +286,14 @@ body {
   margin: 17px auto auto;
 }
 
-#lunar .weekday {
+.lunar-app .weekday {
   height: 0;
   width: 0;
   margin: 0;
   overflow: hidden;
 }
 
-#weather .bottom-box-icon {
+.weather-app .bottom-box-icon {
   height: 40px;
   display: flex;
   justify-content: center;
@@ -301,15 +301,15 @@ body {
   margin: 9px auto;
 }
 
-#weather .bottom-box-icon i {
+.weather-app .bottom-box-icon i {
   color: rgba(238, 202, 77, 0.82);
   font-size: 32px;
 }
 
-#lunar #box-1 .bottom-box-icon,
-#lunar #box-2 .bottom-box-icon,
-#lunar #box-4 .bottom-box-icon,
-#lunar #box-5 .bottom-box-icon {
+.lunar-app #box-1 .bottom-box-icon,
+.lunar-app #box-2 .bottom-box-icon,
+.lunar-app #box-4 .bottom-box-icon,
+.lunar-app #box-5 .bottom-box-icon {
   height: 40px;
   display: flex;
   justify-content: center;
@@ -317,7 +317,7 @@ body {
   margin: 9px auto;
 }
 
-#lunar #box-3 .bottom-box-icon {
+.lunar-app #box-3 .bottom-box-icon {
   height: 81px;
   display: flex;
   justify-content: center;
@@ -325,24 +325,24 @@ body {
   /* margin: 9px auto; */
 }
 
-#lunar .bottom-box-icon i {
+.lunar-app .bottom-box-icon i {
   color: rgba(62, 18, 142, 0.82);
   font-size: 26px;
 }
 
-#lunar #box-3 .bottom-box-icon i {
+.lunar-app #box-3 .bottom-box-icon i {
   color: rgba(62, 18, 142, 1);
   font-size: 32px;
 }
 
-#weather .moonrise-arrow {
+.weather-app .moonrise-arrow {
   height: 0;
   width: 0;
   margin: 0;
   overflow: hidden;
 }
 
-#weather .moonset-arrow {
+.weather-app .moonset-arrow {
   height: 0;
   width: 0;
   margin: 0;
@@ -369,7 +369,7 @@ body {
   font-size: 18px;
 }
 
-#weather .upper-text {
+.weather-app .upper-text {
   color: #000;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -378,7 +378,7 @@ body {
   margin: 8px 0 5px;
 }
 
-#weather .bottom-text {
+.weather-app .bottom-text {
   color: #000;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -387,8 +387,8 @@ body {
   margin: 5px 0;
 }
 
-#lunar #high-box-1,
-#lunar #high-box-5 {
+.lunar-app #high-box-1,
+.lunar-app #high-box-5 {
   color: #000;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -397,16 +397,16 @@ body {
   margin: 13px 0 5px;
 }
 
-#lunar #low-box-1,
-#lunar #low-box-5 {
+.lunar-app #low-box-1,
+.lunar-app #low-box-5 {
   height: 0;
   width: 0;
   margin: 0;
   overflow: hidden;
 }
 
-#lunar #high-box-2,
-#lunar #high-box-4 {
+.lunar-app #high-box-2,
+.lunar-app #high-box-4 {
   color: #000;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -415,8 +415,8 @@ body {
   margin: -5px 0 5px;
 }
 
-#lunar #low-box-2,
-#lunar #low-box-4 {
+.lunar-app #low-box-2,
+.lunar-app #low-box-4 {
   color: #000;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -425,8 +425,8 @@ body {
   margin: -2px 0 5px;
 }
 
-#lunar #high-box-3,
-#lunar #low-box-3 {
+.lunar-app #high-box-3,
+.lunar-app #low-box-3 {
   height: 0;
   width: 0;
   margin: 0;
@@ -528,7 +528,7 @@ body {
   width: 136px;
 }
 
-#lunar-app {
+#lunar-app-btn {
   background: linear-gradient(
     180deg,
     rgb(125 89 175) 1.56%,
@@ -542,16 +542,16 @@ body {
   cursor: pointer;
 }
 
-#lunar-app:hover {
+#lunar-app-btn:hover {
   transform: scale(1.1);
   transition: all 200ms ease-in-out;
 }
 
-#lunar-app i {
+#lunar-app-btn i {
   font-size: 18px;
 }
 
-#weather-app {
+#weather-app-btn {
   background: linear-gradient(
     180deg,
     rgb(235 193 48) 1.56%,
@@ -565,16 +565,16 @@ body {
   cursor: pointer;
 }
 
-#weather-app:hover {
+#weather-app-btn:hover {
   transform: scale(1.1);
   transition: all 200ms ease-in-out;
 }
 
-#weather-app i {
+#weather-app-btn i {
   font-size: 18px;
 }
 
-#humidity-wind-app {
+#humidity-wind-app-btn {
   background: linear-gradient(
     180deg,
     rgb(50 147 136) 1.56%,
@@ -588,12 +588,12 @@ body {
   cursor: pointer;
 }
 
-#humidity-wind-app:hover {
+#humidity-wind-app-btn:hover {
   transform: scale(1.1);
   transition: all 200ms ease-in-out;
 }
 
-#humidity-wind-app i {
+#humidity-wind-app-btn i {
   font-size: 18px;
 }
 
@@ -619,8 +619,5 @@ footer a {
 }
 
 .hidden {
-  height: 0;
-  width: 0;
-  margin: 0;
-  overflow: hidden;
+  display: none;
 }

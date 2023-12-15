@@ -3,7 +3,8 @@ body {
   margin: 0;
 }
 
-#weather {
+#weather,
+#humidity-wind {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -19,28 +20,34 @@ body {
   flex-direction: column;
 }
 
-#weather .container {
+.container {
   width: 350px;
   height: 550px;
   border-radius: 30px;
+  order: 1;
+}
+
+#weather .container {
   background: linear-gradient(
     180deg,
     rgba(238, 202, 77, 0.82) 0%,
     rgba(244, 230, 181, 0.56) 100%
   );
-  order: 1;
-  /* margin: 10% auto 5% auto; */
 }
 
 #lunar .container {
-  width: 350px;
-  height: 550px;
-  border-radius: 30px;
-  order: 1;
   background: linear-gradient(
     180deg,
     rgba(131, 102, 170, 0.95) 1.56%,
     rgba(219, 199, 244, 0.47) 100%
+  );
+}
+
+#humidity-wind .container {
+  background: linear-gradient(
+    180deg,
+    rgba(54, 156, 144, 0.82) 0%,
+    rgba(179, 235, 228, 0.56) 100%
   );
 }
 
@@ -99,7 +106,8 @@ body {
   margin: 5px 0 20px;
 }
 
-#lunar .current-date {
+#lunar .current-date,
+#humidity-wind .current-date {
   font-family: "Roboto", sans-serif;
   font-size: 13px;
   font-style: normal;
@@ -444,6 +452,71 @@ body {
   margin: 8px 0 5px;
 } */
 
+.humidity-wind-wrapper {
+  height: 158px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.humidity-wind-icon {
+  font-size: 100px;
+  color: rgba(19, 94, 85, 0.5);
+  position: absolute;
+}
+.humidity-wind-container {
+  width: 158px;
+  height: 158px;
+  background-color: rgba(255, 255, 255, 0.53);
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.humidity-wind-title {
+  color: #186f75;
+  font-family: "Afacad", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0;
+  margin: 10px 0 0;
+}
+.humidity-wind-info {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 0;
+  margin: 0;
+}
+
+.humidity-unit {
+  font-size: 25px;
+  padding-left: 3px;
+}
+
+.wind-unit {
+  font-size: 21px;
+  padding-left: 3px;
+}
+
+/* .wind-icon {
+  font-size: 100px;
+  color: #fff;
+} */
+
+/* .humidity-info {
+  width: 158px;
+  height: 158px;
+  background-color: rgba(255, 255, 255, 0.53);
+  border-radius: 50%;
+} */
+
 .selector-wrapper {
   order: 2;
   margin-top: 12px;
@@ -461,7 +534,7 @@ body {
     rgb(125 89 175) 1.56%,
     rgb(197 171 230) 100%
   );
-  border-radius: 30px;
+  border-radius: 50%;
   width: 30px;
   height: 30px;
   color: rgb(255, 255, 255);
@@ -484,7 +557,7 @@ body {
     rgb(235 193 48) 1.56%,
     rgb(243, 227, 167) 100%
   );
-  border-radius: 30px;
+  border-radius: 50%;
   width: 30px;
   height: 30px;
   color: rgb(255, 255, 255);
@@ -507,7 +580,7 @@ body {
     rgb(50 147 136) 1.56%,
     rgb(150 219 210) 100%
   );
-  border-radius: 30px;
+  border-radius: 50%;
   width: 30px;
   height: 30px;
   color: rgb(255, 255, 255);

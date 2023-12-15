@@ -498,6 +498,7 @@ body {
 .humidity-unit {
   font-size: 25px;
   padding-left: 3px;
+  display: inline;
 }
 
 .wind-unit {

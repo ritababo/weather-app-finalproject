@@ -11,8 +11,8 @@ function refreshWeatherApp(response) {
   let temperature = Math.round(response.data.temperature.current);
   // let highTemperature = Math.round(response.data.temperature.maximum);
   // let lowTemperature = Math.round(response.data.temperature.minimum);
-  let temperatureElement = document.querySelector("#info-display-xl");
-  let currentInfo = document.querySelector("#current-info");
+  let temperatureElement = document.querySelector("#weather-info-display-xl");
+  let currentInfo = document.querySelector("#weather-current-info");
   // let highTemperatureElement = document.querySelector("#current-high-temp");
   // let lowTemperatureElement = document.querySelector("#current-low-temp");
 
@@ -23,7 +23,7 @@ function refreshWeatherApp(response) {
 }
 
 function refreshWeatherIcons(response) {
-  let iconElement = document.querySelector("#icon-display");
+  let iconElement = document.querySelector("#weather-icon-display");
   let currentWeatherIcon = response.data.condition.icon;
 
   iconElement.innerHTML = getWeatherIcon(currentWeatherIcon);
@@ -56,20 +56,31 @@ function getWeatherIcon(condition) {
   return `<i class="qi-${weatherIcon}-fill"></i>`;
 }
 
-// function getWeatherIcons(response) {
-//   let originalLongitude = response.data.coordinates.longitude;
-//   let originalLatitude = response.data.coordinates.latitude;
+function formatMoonTime(time) {
+  let timestamp = time;
+  let timeString = timestamp.split("T")[1].substring(0, 5);
+  return timeString;
+}
 
-//   let longitude = roundToDecimals(originalLongitude);
-//   let latitude = roundToDecimals(originalLatitude);
+function refreshLunarApp(response) {
+  let moonPhaseIcon = response.data.moonPhase[0].icon;
+  let moonriseTime = response.data.moonrise;
+  let moonsetTime = response.data.moonset;
 
-//   let iconApiKey = "9d36d9f581fe4e639eefe94b965a9339";
-//   let iconApiUrl = `https://devapi.qweather.com/v7/weather/now?lang=en&key=${iconApiKey}&location=${longitude},${latitude}&unit=m`;
+  console.log(moonPhaseIcon);
 
-//   console.log(iconApiUrl);
+  let iconElement = document.querySelector("#lunar-icon-display");
+  let illuminationElement = document.querySelector("#lunar-info-display-xl");
+  let currentInfo = document.querySelector("#lunar-current-info");
+  let moonriseElement = document.querySelector("#lunar-high-box-1");
+  let moonsetElement = document.querySelector("#lunar-high-box-5");
 
-//   axios.get(iconApiUrl).then(refreshWeatherIcons);
-// }
+  iconElement.innerHTML = `<i class="qi-${moonPhaseIcon}"></i>`;
+  illuminationElement.innerHTML = response.data.moonPhase[0].illumination;
+  currentInfo.innerHTML = response.data.moonPhase[0].name.toLowerCase();
+  moonriseElement.innerHTML = formatMoonTime(moonriseTime);
+  moonsetElement.innerHTML = formatMoonTime(moonsetTime);
+}
 
 function refreshHumidityWindApp(response) {
   let humidityElement = document.querySelector("#humidity-info");
@@ -77,14 +88,6 @@ function refreshHumidityWindApp(response) {
 
   humidityElement.innerHTML = `${response.data.temperature.humidity}<span class="humidity-unit" id="humidity-unit">%</span>`;
   windElement.innerHTML = `${response.data.wind.speed}<span class="wind-unit" id="wind-unit">km/h</span>`;
-}
-
-function roundToDecimals(number) {
-  let multiplied = number * 100;
-  let roundedNumber = Math.round(multiplied);
-  roundedNumber = roundedNumber / 100;
-
-  return roundedNumber;
 }
 
 function formatDate(date) {
@@ -112,6 +115,50 @@ function formatDate(date) {
   return `${day}, ${hours}:${minutes}`;
 }
 
+function roundToDecimals(number) {
+  let multiplied = number * 100;
+  let roundedNumber = Math.round(multiplied);
+  roundedNumber = roundedNumber / 100;
+
+  return roundedNumber;
+}
+
+function formatMoonApiDate(date) {
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let time = `${hours}${minutes}`;
+  if (time > 1600) {
+    day = day + 1;
+  }
+
+  return `${year}${month}${day}`;
+}
+
+function getLunarInfo(response) {
+  let date = new Date(response.data.time * 1000);
+  date = formatMoonApiDate(date);
+
+  let originalLongitude = response.data.coordinates.longitude;
+  let originalLatitude = response.data.coordinates.latitude;
+
+  let longitude = roundToDecimals(originalLongitude);
+  let latitude = roundToDecimals(originalLatitude);
+
+  let moonApiKey = "9d36d9f581fe4e639eefe94b965a9339";
+  let moonApiUrl = `https://devapi.qweather.com/v7/astronomy/moon?lang=en&key=${moonApiKey}&date=${date}&location=${longitude},${latitude}`;
+
+  console.log(moonApiUrl);
+  axios.get(moonApiUrl).then(refreshLunarApp);
+}
+
 function searchCity(city) {
   let apiKey = "3cafb635b28334o0e324aet783836f5a";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&unit=metric`;
@@ -120,6 +167,7 @@ function searchCity(city) {
     refreshWeatherApp(response);
     refreshWeatherIcons(response);
     refreshHumidityWindApp(response);
+    getLunarInfo(response);
   });
 }
 
@@ -138,13 +186,20 @@ searchCity("Porto");
 function launchLunarApp(event) {
   event.preventDefault();
   let currentApp = document.querySelector("#app");
-  let structureOne = document.querySelector("#structure-one");
-  let structureTwo = document.querySelector("#structure-two");
-  if ((currentApp.classList = "weather-app" || "humidity-wind-app")) {
+  let structureWeather = document.querySelector("#structure-weather");
+  let structureLunar = document.querySelector("#structure-lunar");
+  let structureHumidity = document.querySelector("#structure-humidity");
+  if (
+    currentApp.classList.contains("weather-app") ||
+    currentApp.classList.contains("humidity-wind-app")
+  ) {
     currentApp.classList.add("lunar-app");
-    currentApp.classList.remove("weather-app" || "humidity-wind-app");
-    structureOne.classList.remove("hidden");
-    structureTwo.classList.add("hidden");
+    currentApp.classList.remove("weather-app");
+    currentApp.classList.remove("humidity-wind-app");
+
+    structureLunar.classList.remove("hidden");
+    structureWeather.classList.add("hidden");
+    structureHumidity.classList.add("hidden");
   }
 }
 let lunarAppBtn = document.querySelector("#lunar-app-btn");
@@ -153,13 +208,20 @@ lunarAppBtn.addEventListener("click", launchLunarApp);
 function launchWeatherApp(event) {
   event.preventDefault();
   let currentApp = document.querySelector("#app");
-  let structureOne = document.querySelector("#structure-one");
-  let structureTwo = document.querySelector("#structure-two");
-  if ((currentApp.classList = "lunar-app" || "humidity-wind-app")) {
+  let structureWeather = document.querySelector("#structure-weather");
+  let structureLunar = document.querySelector("#structure-lunar");
+  let structureHumidity = document.querySelector("#structure-humidity");
+  if (
+    currentApp.classList.contains("lunar-app") ||
+    currentApp.classList.contains("humidity-wind-app")
+  ) {
     currentApp.classList.add("weather-app");
-    currentApp.classList.remove("lunar-app" || "humidity-wind-app");
-    structureOne.classList.remove("hidden");
-    structureTwo.classList.add("hidden");
+    currentApp.classList.remove("lunar-app");
+    currentApp.classList.remove("humidity-wind-app");
+
+    structureLunar.classList.add("hidden");
+    structureWeather.classList.remove("hidden");
+    structureHumidity.classList.add("hidden");
   }
 }
 let weatherAppBtn = document.querySelector("#weather-app-btn");
@@ -168,13 +230,20 @@ weatherAppBtn.addEventListener("click", launchWeatherApp);
 function launchHumidityWindApp(event) {
   event.preventDefault();
   let currentApp = document.querySelector("#app");
-  let structureOne = document.querySelector("#structure-one");
-  let structureTwo = document.querySelector("#structure-two");
-  if ((currentApp.classList = "lunar-app" || "weather-app")) {
+  let structureWeather = document.querySelector("#structure-weather");
+  let structureLunar = document.querySelector("#structure-lunar");
+  let structureHumidity = document.querySelector("#structure-humidity");
+  if (
+    currentApp.classList.contains("lunar-app") ||
+    currentApp.classList.contains("weather-app")
+  ) {
     currentApp.classList.add("humidity-wind-app");
-    currentApp.classList.remove("lunar-app" || "weather-app");
-    structureOne.classList.add("hidden");
-    structureTwo.classList.remove("hidden");
+    currentApp.classList.remove("lunar-app");
+    currentApp.classList.remove("weather-app");
+
+    structureLunar.classList.add("hidden");
+    structureWeather.classList.add("hidden");
+    structureHumidity.classList.remove("hidden");
   }
 }
 let humidityWindAppBtn = document.querySelector("#humidity-wind-app-btn");

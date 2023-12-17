@@ -44,61 +44,126 @@
           </div>
           <h1 class="city" id="city">Porto</h1>
           <h2 class="current-date" id="current-date"></h2>
-          <!-- Hide code below for humidity-wind-app -->
-          <div id="structure-one" class="">
-            <div class="display-container" id="display-container">
-              <div class="icon-display" id="icon-display"></div>
-              <div class="info-display" id="info-display">
-                <span class="info-display-xl" id="info-display-xl"></span>
-                <span class="info-display-xs">ºC</span>
+          <!-- Structure for weather app -->
+          <div id="structure-weather" class="">
+            <div class="display-container" id="weather-display-container">
+              <div class="icon-display" id="weather-icon-display"></div>
+              <div class="info-display" id="weather-info-display">
+                <span
+                  class="info-display-xl"
+                  id="weather-info-display-xl"
+                ></span>
+                <span class="info-display-xs" id="weather-info-display-xs"
+                  >ºC</span
+                >
               </div>
             </div>
-            <div class="current-info" id="current-info"></div>
-            <div class="current-info-xs" id="current-info-xs">
+            <div class="current-info" id="weather-current-info"></div>
+            <div class="current-info-xs" id="weather-current-info-xs">
               <span class="current-high-temp" id="current-high-temp"
                 >H: 29º</span
               >
               <span class="current-low-temp" id="current-low-temp">L: 17º</span>
             </div>
-            <div class="bottom-container" id="bottom-container">
-              <div class="bottom-box" id="box-1">
+            <div class="bottom-container" id="weather-bottom-container">
+              <div class="bottom-box" id="weather-box-1">
                 <p class="weekday" id="weekday-box-1">Wed</p>
-                <div class="bottom-box-icon">
+                <div class="bottom-box-icon" id="weather-bottom-box-icon-1">
+                  <i class="qi-103"></i>
+                </div>
+                <p class="upper-text" id="weather-high-box-1">19º</p>
+                <p class="bottom-text" id="weather-low-box-1">11º</p>
+              </div>
+              <div class="bottom-box" id="weather-box-2">
+                <p class="weekday" id="weekday-box-2">Wed</p>
+                <div class="bottom-box-icon" id="weather-bottom-box-icon-2">
+                  <i class="qi-103"></i>
+                </div>
+                <p class="upper-text" id="weather-high-box-2">19º</p>
+                <p class="bottom-text" id="weather-low-box-2">11º</p>
+              </div>
+              <div class="bottom-box" id="weather-box-3">
+                <p class="weekday" id="weekday-box-3">Wed</p>
+                <div class="bottom-box-icon" id="weather-bottom-box-icon-3">
+                  <i class="qi-103"></i>
+                </div>
+                <p class="upper-text" id="weather-high-box-3">19º</p>
+                <p class="bottom-text" id="weather-low-box-3">11º</p>
+              </div>
+              <div class="bottom-box" id="weather-box-4">
+                <p class="weekday" id="weekday-box-4">Wed</p>
+                <div class="bottom-box-icon" id="weather-bottom-box-icon-4">
+                  <i class="qi-103"></i>
+                </div>
+                <p class="upper-text" id="weather-high-box-4">19º</p>
+                <p class="bottom-text" id="weather-low-box-4">11º</p>
+              </div>
+              <div class="bottom-box" id="weather-box-5">
+                <p class="weekday" id="weekday-box-5">Wed</p>
+                <div class="bottom-box-icon" id="weather-bottom-box-icon-5">
+                  <i class="qi-103"></i>
+                </div>
+                <p class="upper-text" id="weather-high-box-5">19º</p>
+                <p class="bottom-text" id="weather-low-box-5">11º</p>
+              </div>
+            </div>
+          </div>
+          <!-- Structure for lunar app -->
+          <div id="structure-lunar" class="hidden">
+            <div class="display-container" id="lunar-display-container">
+              <div class="icon-display" id="lunar-icon-display"></div>
+              <div class="info-display" id="lunar-info-display">
+                <span class="info-display-xl" id="lunar-info-display-xl"></span>
+                <span class="info-display-xs" id="lunar-info-display-xs"
+                  >%</span
+                >
+              </div>
+            </div>
+            <div class="current-info" id="lunar-current-info"></div>
+            <div class="current-info-xs" id="lunar-current-info-xs">
+              <span class="current-moon-age" id="current-moon-age"
+                >AGE: 29.8 days</span
+              >
+            </div>
+            <div class="bottom-container" id="lunar-bottom-container">
+              <div class="bottom-box" id="lunar-box-1">
+                <p class="weekday" id="weekday-box-1">Wed</p>
+                <div class="bottom-box-icon" id="lunar-bottom-box-icon-1">
                   <i class="qi-150"></i>
                   <div class="moonrise-arrow">
                     <span class="material-symbols-rounded"> arrow_upward </span>
                   </div>
                 </div>
-                <p class="upper-text" id="high-box-1">19º</p>
-                <p class="bottom-text" id="low-box-1">11º</p>
+                <p class="upper-text" id="lunar-high-box-1"></p>
+                <p class="bottom-text" id="lunar-low-box-1"></p>
               </div>
-              <div class="bottom-box" id="box-2">
+              <div class="bottom-box" id="lunar-box-2">
                 <p class="weekday" id="weekday-box-2">Wed</p>
-                <div class="bottom-box-icon">
-                  <i class="qi-103"></i>
+                <div class="bottom-box-icon" id="lunar-bottom-box-icon-2">
+                  <i class="qi-800"></i>
                 </div>
-                <p class="upper-text" id="high-box-2">19º</p>
-                <p class="bottom-text" id="low-box-2">11º</p>
+                <p class="upper-text" id="lunar-high-box-2">12</p>
+                <p class="bottom-text" id="lunar-low-box-2">Dec</p>
               </div>
-              <div class="bottom-box" id="box-3">
+              <div class="bottom-box" id="lunar-box-3">
                 <p class="weekday" id="weekday-box-3">Wed</p>
-                <div class="bottom-box-icon">
+                <div class="bottom-box-icon" id="lunar-bottom-box-icon-3">
                   <i class="qi-103"></i>
                 </div>
-                <p class="upper-text" id="high-box-3">19º</p>
-                <p class="bottom-text" id="low-box-3">11º</p>
+                <p class="upper-text" id="lunar-high-box-3"></p>
+                <p class="bottom-text" id="lunar-low-box-3"></p>
               </div>
-              <div class="bottom-box" id="box-4">
+              <div class="bottom-box" id="lunar-box-4">
                 <p class="weekday" id="weekday-box-4">Wed</p>
-                <div class="bottom-box-icon">
-                  <i class="qi-103"></i>
+                <div class="bottom-box-icon" id="lunar-bottom-box-icon-4">
+                  <i class="qi-804"></i>
                 </div>
-                <p class="upper-text" id="high-box-4">19º</p>
-                <p class="bottom-text" id="low-box-4">11º</p>
+                <p class="upper-text" id="lunar-high-box-4">27</p>
+                <p class="bottom-text" id="lunar-low-box-4">Dec</p>
               </div>
-              <div class="bottom-box" id="box-5">
+              <div class="bottom-box" id="lunar-box-5">
                 <p class="weekday" id="weekday-box-5">Wed</p>
-                <div class="bottom-box-icon">
+                <div class="bottom-box-icon" id="lunar-bottom-box-icon-5">
                   <i class="qi-150"></i>
                   <div class="moonset-arrow">
                     <span class="material-symbols-rounded">
@@ -106,14 +171,13 @@
                     </span>
                   </div>
                 </div>
-                <p class="upper-text" id="high-box-5">19º</p>
-                <p class="bottom-text" id="low-box-5">11º</p>
+                <p class="upper-text" id="lunar-high-box-5"></p>
+                <p class="bottom-text" id="lunar-low-box-5"></p>
               </div>
             </div>
           </div>
-
-          <!-- Hide code below for weather and lunar apps -->
-          <div id="structure-two" class="hidden">
+          <!-- Structure for humidity/wind app -->
+          <div id="structure-humidity" class="hidden">
             <div class="humidity-wind-wrapper">
               <div class="humidity-wind-icon">
                 <i class="qi-399-fill"></i>

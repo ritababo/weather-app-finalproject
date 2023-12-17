@@ -176,7 +176,8 @@ body {
 .lunar-app .info-display-xs {
   font-size: 38px;
   font-weight: 200;
-  transform: translate(-10px, 10px);
+  transform: translate(0px, 10px);
+  /* transform: translate(-10px, 10px); */
 }
 
 .weather-app .current-info {
@@ -256,19 +257,19 @@ body {
   border-radius: 29px;
 }
 
-.lunar-app #box-1,
-.lunar-app #box-5 {
+#lunar-box-1,
+#lunar-box-5 {
   background: rgba(255, 255, 255, 0.45);
   align-self: flex-end;
 }
 
-.lunar-app #box-2,
-.lunar-app #box-4 {
+#lunar-box-2,
+#lunar-box-4 {
   background: rgba(255, 255, 255, 0.6);
   align-self: center;
 }
 
-.lunar-app #box-3 {
+#lunar-box-3 {
   width: 56px;
   height: 81px;
   border-radius: 29px;
@@ -306,10 +307,10 @@ body {
   font-size: 32px;
 }
 
-.lunar-app #box-1 .bottom-box-icon,
-.lunar-app #box-2 .bottom-box-icon,
-.lunar-app #box-4 .bottom-box-icon,
-.lunar-app #box-5 .bottom-box-icon {
+#lunar-box-1 .bottom-box-icon,
+#lunar-box-2 .bottom-box-icon,
+#lunar-box-4 .bottom-box-icon,
+#lunar-box-5 .bottom-box-icon {
   height: 40px;
   display: flex;
   justify-content: center;
@@ -317,7 +318,7 @@ body {
   margin: 9px auto;
 }
 
-.lunar-app #box-3 .bottom-box-icon {
+#lunar-box-3 .bottom-box-icon {
   height: 81px;
   display: flex;
   justify-content: center;
@@ -330,23 +331,9 @@ body {
   font-size: 26px;
 }
 
-.lunar-app #box-3 .bottom-box-icon i {
+.lunar-app #lunar-box-3 .bottom-box-icon i {
   color: rgba(62, 18, 142, 1);
   font-size: 32px;
-}
-
-.weather-app .moonrise-arrow {
-  height: 0;
-  width: 0;
-  margin: 0;
-  overflow: hidden;
-}
-
-.weather-app .moonset-arrow {
-  height: 0;
-  width: 0;
-  margin: 0;
-  overflow: hidden;
 }
 
 .moonrise-arrow {
@@ -387,8 +374,8 @@ body {
   margin: 5px 0;
 }
 
-.lunar-app #high-box-1,
-.lunar-app #high-box-5 {
+#lunar-high-box-1,
+#lunar-high-box-5 {
   color: #000;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -397,13 +384,13 @@ body {
   margin: 13px 0 5px;
 }
 
-.lunar-app #low-box-1,
-.lunar-app #low-box-5 {
+#lunar-low-box-1,
+#lunar-low-box-5 {
   display: none;
 }
 
-.lunar-app #high-box-2,
-.lunar-app #high-box-4 {
+#lunar-high-box-2,
+#lunar-high-box-4 {
   color: #000;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -412,8 +399,8 @@ body {
   margin: -5px 0 5px;
 }
 
-.lunar-app #low-box-2,
-.lunar-app #low-box-4 {
+#lunar-low-box-2,
+#lunar-low-box-4 {
   color: #000;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
@@ -422,29 +409,10 @@ body {
   margin: -2px 0 5px;
 }
 
-.lunar-app #high-box-3,
-.lunar-app #low-box-3 {
+#lunar-high-box-3,
+#lunar-low-box-3 {
   display: none;
 }
-
-/* #lunar .bottom-text {
-  color: #000;
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 200;
-  margin: 5px 0;
-} */
-
-/* #lunar .bottom-box #box-1,
-#box-5 {
-  color: #000;
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 500;
-  margin: 8px 0 5px;
-} */
 
 .humidity-wind-wrapper {
   height: 158px;

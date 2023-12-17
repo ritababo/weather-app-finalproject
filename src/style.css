@@ -331,7 +331,7 @@ body {
   font-size: 26px;
 }
 
-.lunar-app #lunar-box-3 .bottom-box-icon i {
+.lunar-app #lunar-box-3 .bottom-box-icon span {
   color: rgba(62, 18, 142, 1);
   font-size: 32px;
 }

@@ -257,13 +257,13 @@ body {
 }
 
 .lunar-app #box-1,
-#box-5 {
+.lunar-app #box-5 {
   background: rgba(255, 255, 255, 0.45);
   align-self: flex-end;
 }
 
 .lunar-app #box-2,
-#box-4 {
+.lunar-app #box-4 {
   background: rgba(255, 255, 255, 0.6);
   align-self: center;
 }
@@ -399,10 +399,7 @@ body {
 
 .lunar-app #low-box-1,
 .lunar-app #low-box-5 {
-  height: 0;
-  width: 0;
-  margin: 0;
-  overflow: hidden;
+  display: none;
 }
 
 .lunar-app #high-box-2,
@@ -427,10 +424,7 @@ body {
 
 .lunar-app #high-box-3,
 .lunar-app #low-box-3 {
-  height: 0;
-  width: 0;
-  margin: 0;
-  overflow: hidden;
+  display: none;
 }
 
 /* #lunar .bottom-text {

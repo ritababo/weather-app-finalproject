@@ -288,10 +288,7 @@ body {
 }
 
 .lunar-app .weekday {
-  height: 0;
-  width: 0;
-  margin: 0;
-  overflow: hidden;
+  display: none;
 }
 
 .weather-app .bottom-box-icon {

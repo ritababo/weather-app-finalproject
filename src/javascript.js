@@ -67,8 +67,6 @@ function refreshLunarApp(response) {
   let moonriseTime = response.data.moonrise;
   let moonsetTime = response.data.moonset;
 
-  console.log(moonPhaseIcon);
-
   let iconElement = document.querySelector("#lunar-icon-display");
   let illuminationElement = document.querySelector("#lunar-info-display-xl");
   let currentInfo = document.querySelector("#lunar-current-info");
@@ -181,7 +179,30 @@ function handleSearchSubmit(event) {
 let searchFormElement = document.querySelector("#city-search");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
+function displayForecast() {
+  let weekdays = ["Wed", "Thu", "Fri", "Sat", "Sun"];
+  let forecastHtml = "";
+
+  weekdays.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `<div class="bottom-box" id="forecast-box">
+                <p class="weekday" id="weekday">${day}</p>
+                <div class="bottom-box-icon" id="forecast-icon">
+                  <i class="qi-103"></i>
+                </div>
+                <p class="upper-text" id="forecast-high-temp">19º</p>
+                <p class="bottom-text" id="forecast-low-temp">11º</p>
+              </div>
+`;
+  });
+
+  let forecastElement = document.querySelector("#weather-forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
+
 searchCity("Porto");
+displayForecast();
 
 function launchLunarApp(event) {
   event.preventDefault();

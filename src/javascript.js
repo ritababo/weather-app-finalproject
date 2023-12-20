@@ -233,7 +233,6 @@ function displayForecast(response) {
 
 searchCity("Porto");
 getForecast("Porto");
-getNextMoon();
 // displayForecast();
 
 function launchLunarApp(event) {

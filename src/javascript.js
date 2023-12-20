@@ -20,13 +20,17 @@ function refreshWeatherApp(response) {
   temperatureElement.innerHTML = temperature;
   // highTemperatureElement.innerHTML = `H: ${highTemperature}º`;
   // lowTemperatureElement.innerHTML = `L: ${lowTemperature}º`;
+
+  getForecast(response.data.city);
 }
 
 function refreshWeatherIcons(response) {
   let iconElement = document.querySelector("#weather-icon-display");
   let currentWeatherIcon = response.data.condition.icon;
 
-  iconElement.innerHTML = getWeatherIcon(currentWeatherIcon);
+  iconElement.innerHTML = `<i class="qi-${getWeatherIcon(
+    currentWeatherIcon
+  )}-fill"></i>`;
 }
 
 function getWeatherIcon(condition) {
@@ -53,7 +57,7 @@ function getWeatherIcon(condition) {
 
   let weatherIcon = weatherConditions[condition];
 
-  return `<i class="qi-${weatherIcon}-fill"></i>`;
+  return `${weatherIcon}`;
 }
 
 function formatMoonTime(time) {
@@ -153,7 +157,6 @@ function getLunarInfo(response) {
   let moonApiKey = "9d36d9f581fe4e639eefe94b965a9339";
   let moonApiUrl = `https://devapi.qweather.com/v7/astronomy/moon?lang=en&key=${moonApiKey}&date=${date}&location=${longitude},${latitude}`;
 
-  console.log(moonApiUrl);
   axios.get(moonApiUrl).then(refreshLunarApp);
 }
 
@@ -179,30 +182,59 @@ function handleSearchSubmit(event) {
 let searchFormElement = document.querySelector("#city-search");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-function displayForecast() {
-  let weekdays = ["Wed", "Thu", "Fri", "Sat", "Sun"];
+function formatWeekday(timestamp) {
+  let date = new Date(timestamp * 1000);
+
+  let weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return weekdays[date.getDay()];
+}
+
+function getForecast(city) {
+  let apiKey = "3cafb635b28334o0e324aet783836f5a";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&unit=metric`;
+
+  axios(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
   let forecastHtml = "";
 
-  weekdays.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `<div class="bottom-box" id="forecast-box">
-                <p class="weekday" id="weekday">${day}</p>
+  response.data.daily.forEach(function (day, index) {
+    if (index >= 1 && index < 6) {
+      forecastHtml =
+        forecastHtml +
+        `<div class="bottom-box" id="forecast-box">
+                <p class="weekday" id="weekday">${formatWeekday(day.time)}</p>
                 <div class="bottom-box-icon" id="forecast-icon">
-                  <i class="qi-103"></i>
+                  <i class="qi-${getWeatherIcon(day.condition.icon)}"></i>
                 </div>
-                <p class="upper-text" id="forecast-high-temp">19º</p>
-                <p class="bottom-text" id="forecast-low-temp">11º</p>
+                <p class="upper-text" id="forecast-high-temp">${Math.round(
+                  day.temperature.maximum
+                )}º</p>
+                <p class="bottom-text" id="forecast-low-temp">${Math.round(
+                  day.temperature.minimum
+                )}º</p>
               </div>
 `;
+    }
   });
 
   let forecastElement = document.querySelector("#weather-forecast");
   forecastElement.innerHTML = forecastHtml;
+
+  let highTemperature = Math.round(response.data.daily[0].temperature.maximum);
+  let lowTemperature = Math.round(response.data.daily[0].temperature.minimum);
+  let highTemperatureElement = document.querySelector("#current-high-temp");
+  let lowTemperatureElement = document.querySelector("#current-low-temp");
+  highTemperatureElement.innerHTML = `H: ${highTemperature}º`;
+  lowTemperatureElement.innerHTML = `L: ${lowTemperature}º`;
 }
 
 searchCity("Porto");
-displayForecast();
+getForecast("Porto");
+getNextMoon();
+// displayForecast();
 
 function launchLunarApp(event) {
   event.preventDefault();

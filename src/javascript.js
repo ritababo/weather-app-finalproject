@@ -1,32 +1,43 @@
 function refreshGeneralInfo(response) {
   let cityElement = document.querySelector("#city");
   let dateElement = document.querySelector("#current-date");
-  let date = new Date(response.data.time * 1000);
+  let date = new Date(response.data.currentConditions.datetimeEpoch * 1000);
 
-  cityElement.innerHTML = response.data.city;
+  cityElement.innerHTML = response.data.address;
   dateElement.innerHTML = formatDate(date);
 }
 
-function refreshWeatherApp(response) {
-  let temperature = Math.round(response.data.temperature.current);
-  // let highTemperature = Math.round(response.data.temperature.maximum);
-  // let lowTemperature = Math.round(response.data.temperature.minimum);
-  let temperatureElement = document.querySelector("#weather-info-display-xl");
-  let currentInfo = document.querySelector("#weather-current-info");
-  // let highTemperatureElement = document.querySelector("#current-high-temp");
-  // let lowTemperatureElement = document.querySelector("#current-low-temp");
+function refreshHumidityWindApp(response) {
+  let humidityElement = document.querySelector("#humidity-info");
+  let windElement = document.querySelector("#wind-info");
 
-  currentInfo.innerHTML = response.data.condition.description;
-  temperatureElement.innerHTML = temperature;
-  // highTemperatureElement.innerHTML = `H: ${highTemperature}º`;
-  // lowTemperatureElement.innerHTML = `L: ${lowTemperature}º`;
-
-  getForecast(response.data.city);
+  humidityElement.innerHTML = `${Math.round(
+    response.data.currentConditions.humidity
+  )}<span class="humidity-unit" id="humidity-unit">%</span>`;
+  windElement.innerHTML = `${response.data.currentConditions.windspeed}<span class="wind-unit" id="wind-unit">km/h</span>`;
 }
 
-function refreshWeatherIcons(response) {
+function refreshWeatherApp(response) {
+  console.log(response);
+  let temperature = Math.round(response.data.currentConditions.temp);
+  let highTemperature = Math.round(response.data.days[21].tempmax);
+  let lowTemperature = Math.round(response.data.days[21].tempmin);
+
+  let temperatureElement = document.querySelector("#weather-info-display-xl");
+  let currentInfo = document.querySelector("#weather-current-info");
+  let highTemperatureElement = document.querySelector("#current-high-temp");
+  let lowTemperatureElement = document.querySelector("#current-low-temp");
+
+  currentInfo.innerHTML =
+    response.data.currentConditions.conditions.toLowerCase();
+  temperatureElement.innerHTML = temperature;
+  highTemperatureElement.innerHTML = `H: ${highTemperature}º`;
+  lowTemperatureElement.innerHTML = `L: ${lowTemperature}º`;
+}
+
+function refreshWeatherIcon(response) {
   let iconElement = document.querySelector("#weather-icon-display");
-  let currentWeatherIcon = response.data.condition.icon;
+  let currentWeatherIcon = response.data.currentConditions.icon;
 
   iconElement.innerHTML = `<i class="qi-${getWeatherIcon(
     currentWeatherIcon
@@ -35,24 +46,22 @@ function refreshWeatherIcons(response) {
 
 function getWeatherIcon(condition) {
   let weatherConditions = {
-    "clear-sky-day": "100",
-    "clear-sky-night": "150",
-    "few-clouds-day": "102",
-    "few-clouds-night": "152",
-    "scattered-clouds-day": "103",
-    "scattered-clouds-night": "153",
-    "broken-clouds-day": "101",
-    "broken-clouds-night": "151",
-    "shower-rain-day": "306",
-    "shower-rain-night": "351",
-    "rain-day": "305",
-    "rain-night": "350",
-    "thunderstorm-day": "302",
-    "thunderstorm-night": "302",
-    "snow-day": "499",
-    "snow-night": "457",
-    "mist-day": "500",
-    "mist-night": "500",
+    snow: "499",
+    "snow-showers-day": "406",
+    "snow-showers-night": "456",
+    "thunder-rain": "303",
+    "thunder-showers-day": "302",
+    "thunder-showers-night": "302",
+    rain: "309",
+    "showers-day": "301",
+    "showers-night": "351",
+    fog: "2154",
+    wind: "2208",
+    cloudy: "104",
+    "partly-cloudy-day": "103",
+    "partly-cloudy-night": "153",
+    "clear-day": "100",
+    "clear-night": "150",
   };
 
   let weatherIcon = weatherConditions[condition];
@@ -60,36 +69,200 @@ function getWeatherIcon(condition) {
   return `${weatherIcon}`;
 }
 
-function formatMoonTime(time) {
-  let timestamp = time;
-  let timeString = timestamp.split("T")[1].substring(0, 5);
-  return timeString;
+function displayForecast(response) {
+  let forecastHtml = "";
+
+  response.data.days.forEach(function (day, index) {
+    if (index >= 22 && index < 27) {
+      forecastHtml =
+        forecastHtml +
+        `<div class="bottom-box" id="forecast-box">
+                <p class="weekday" id="weekday">${formatWeekday(
+                  day.datetimeEpoch
+                )}</p>
+                <div class="bottom-box-icon" id="forecast-icon">
+                  <i class="qi-${getWeatherIcon(day.icon)}"></i>
+                </div>
+                <p class="upper-text" id="forecast-high-temp">${Math.round(
+                  day.tempmax
+                )}º</p>
+                <p class="bottom-text" id="forecast-low-temp">${Math.round(
+                  day.tempmin
+                )}º</p>
+              </div>
+`;
+    }
+  });
+
+  let forecastElement = document.querySelector("#weather-forecast");
+  forecastElement.innerHTML = forecastHtml;
 }
 
 function refreshLunarApp(response) {
-  let moonPhaseIcon = response.data.moonPhase[0].icon;
-  let moonriseTime = response.data.moonrise;
-  let moonsetTime = response.data.moonset;
+  let moonriseTime = response.data.days[21].moonrise;
+  let moonsetTime = response.data.days[21].moonset;
+  let currentMoonPhase = response.data.currentConditions.moonphase;
 
-  let iconElement = document.querySelector("#lunar-icon-display");
-  let illuminationElement = document.querySelector("#lunar-info-display-xl");
+  let moonphaseElement = document.querySelector("#lunar-info-display-xl");
   let currentInfo = document.querySelector("#lunar-current-info");
-  let moonriseElement = document.querySelector("#lunar-high-box-1");
-  let moonsetElement = document.querySelector("#lunar-high-box-5");
+  let moonriseElement = document.querySelector("#moonrise");
+  let moonsetElement = document.querySelector("#moonset");
 
-  iconElement.innerHTML = `<i class="qi-${moonPhaseIcon}"></i>`;
-  illuminationElement.innerHTML = response.data.moonPhase[0].illumination;
-  currentInfo.innerHTML = response.data.moonPhase[0].name.toLowerCase();
-  moonriseElement.innerHTML = formatMoonTime(moonriseTime);
-  moonsetElement.innerHTML = formatMoonTime(moonsetTime);
+  moonphaseElement.innerHTML = currentMoonPhase * 100;
+  currentInfo.innerHTML = getLunarPhase(
+    currentMoonPhase,
+    "description"
+  ).toLowerCase();
+  moonriseElement.innerHTML = `moonrise: ${moonriseTime.slice(0, 5)}`;
+  moonsetElement.innerHTML = `moonset: ${moonsetTime.slice(0, 5)}`;
+  findMoonPhasesDates(response);
 }
 
-function refreshHumidityWindApp(response) {
-  let humidityElement = document.querySelector("#humidity-info");
-  let windElement = document.querySelector("#wind-info");
+function refreshLunarIcon(response) {
+  let iconElement = document.querySelector("#lunar-icon-display");
+  let currentMoonPhase = response.data.currentConditions.moonphase;
 
-  humidityElement.innerHTML = `${response.data.temperature.humidity}<span class="humidity-unit" id="humidity-unit">%</span>`;
-  windElement.innerHTML = `${response.data.wind.speed}<span class="wind-unit" id="wind-unit">km/h</span>`;
+  iconElement.innerHTML = `<i class="qi-${getLunarPhase(
+    currentMoonPhase,
+    "icon"
+  )}"></i>`;
+}
+
+function getLunarPhase(condition, type) {
+  let moonphases = {
+    newMoon: "800",
+    waxingCrescent: "801",
+    firstQuarter: "802",
+    waxingGibbous: "803",
+    fullMoon: "804",
+    waningGibbous: "805",
+    lastQuarter: "806",
+    waningCrescent: "807",
+  };
+
+  if (type === "icon") {
+    if (condition === 0) {
+      return moonphases.newMoon;
+    } else if (condition > 0 && condition < 0.25) {
+      return moonphases.waxingCrescent;
+    } else if (condition === 0.25) {
+      return moonphases.firstQuarter;
+    } else if (condition > 0.25 && condition < 0.5) {
+      return moonphases.waxingGibbous;
+    } else if (condition === 0.5) {
+      return moonphases.fullMoon;
+    } else if (condition > 0.5 && condition < 0.75) {
+      return moonphases.waningGibbous;
+    } else if (condition === 0.75) {
+      return moonphases.lastQuarter;
+    } else if (condition > 0.75 && condition <= 1) {
+      return moonphases.waningCrescent;
+    }
+  } else if (type === "description") {
+    if (condition === 0) {
+      return "New Moon";
+    } else if (condition > 0 && condition < 0.25) {
+      return "Waxing Crescent";
+    } else if (condition === 0.25) {
+      return "First Quarter";
+    } else if (condition > 0.25 && condition < 0.5) {
+      return "Waxing Gibbous";
+    } else if (condition === 0.5) {
+      return "Full Moon";
+    } else if (condition > 0.5 && condition < 0.75) {
+      return "Waning Gibbous";
+    } else if (condition === 0.75) {
+      return "Last Quarter";
+    } else if (condition > 0.75 && condition <= 1) {
+      return "Waning Crescent";
+    }
+  }
+}
+
+function findMoonPhasesDates(response) {
+  let filterNewMoon = response.data.days.filter((day) => day.moonphase === 0);
+  let filterFirstQuarter = response.data.days.filter(
+    (day) => day.moonphase === 0.25
+  );
+  let filterFullMoon = response.data.days.filter(
+    (day) => day.moonphase === 0.5
+  );
+  let filterLastQuarter = response.data.days.filter(
+    (day) => day.moonphase === 0.75
+  );
+
+  let newMoonDates = filterNewMoon.map((day) => day.datetimeEpoch);
+  let firstQuarterDates = filterFirstQuarter.map((day) => day.datetimeEpoch);
+  let fullMoonDates = filterFullMoon.map((day) => day.datetimeEpoch);
+  let lastQuarterDates = filterLastQuarter.map((day) => day.datetimeEpoch);
+
+  let moonphases = [
+    newMoonDates,
+    firstQuarterDates,
+    fullMoonDates,
+    lastQuarterDates,
+  ];
+
+  let newMoonElement = document.querySelector("#moonphase-date-1");
+  let firstQuarterElement = document.querySelector("#moonphase-date-2");
+  let fullMoonElement = document.querySelector("#moonphase-date-4");
+  let lastQuarterElement = document.querySelector("#moonphase-date-5");
+
+  newMoonElement.innerHTML = `<p class="upper-text" id="lunar-high-box-1">${formatDay(
+    moonphases[0]
+  )}</p>
+                  <p class="bottom-text" id="lunar-low-box-1">${formatMonth(
+                    moonphases[0]
+                  )}</p>`;
+  firstQuarterElement.innerHTML = `<p class="upper-text" id="lunar-high-box-2">${formatDay(
+    moonphases[1]
+  )}</p>
+                  <p class="bottom-text" id="lunar-low-box-2">${formatMonth(
+                    moonphases[1]
+                  )}</p>`;
+  fullMoonElement.innerHTML = `<p class="upper-text" id="lunar-high-box-4">${formatDay(
+    moonphases[2]
+  )}</p>
+                  <p class="bottom-text" id="lunar-low-box-4">${formatMonth(
+                    moonphases[2]
+                  )}</p>`;
+  lastQuarterElement.innerHTML = `<p class="upper-text" id="lunar-high-box-5">${formatDay(
+    moonphases[3]
+  )}</p>
+                  <p class="bottom-text" id="lunar-low-box-5">${formatMonth(
+                    moonphases[3]
+                  )}</p>`;
+
+  console.log(formatMonth(moonphases[3]));
+}
+
+function formatMonth(timestamp) {
+  let date = new Date(timestamp * 1000);
+
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  return months[date.getMonth()];
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+
+  let day = date.getDate();
+
+  return day;
 }
 
 function formatDate(date) {
@@ -117,71 +290,6 @@ function formatDate(date) {
   return `${day}, ${hours}:${minutes}`;
 }
 
-function roundToDecimals(number) {
-  let multiplied = number * 100;
-  let roundedNumber = Math.round(multiplied);
-  roundedNumber = roundedNumber / 100;
-
-  return roundedNumber;
-}
-
-function formatMoonApiDate(date) {
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  let time = `${hours}${minutes}`;
-  if (time > 1600) {
-    day = day + 1;
-  }
-
-  return `${year}${month}${day}`;
-}
-
-function getLunarInfo(response) {
-  let date = new Date(response.data.time * 1000);
-  date = formatMoonApiDate(date);
-
-  let originalLongitude = response.data.coordinates.longitude;
-  let originalLatitude = response.data.coordinates.latitude;
-
-  let longitude = roundToDecimals(originalLongitude);
-  let latitude = roundToDecimals(originalLatitude);
-
-  let moonApiKey = "9d36d9f581fe4e639eefe94b965a9339";
-  let moonApiUrl = `https://devapi.qweather.com/v7/astronomy/moon?lang=en&key=${moonApiKey}&date=${date}&location=${longitude},${latitude}`;
-
-  axios.get(moonApiUrl).then(refreshLunarApp);
-}
-
-function searchCity(city) {
-  let apiKey = "3cafb635b28334o0e324aet783836f5a";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&unit=metric`;
-  axios.get(apiUrl).then((response) => {
-    refreshGeneralInfo(response);
-    refreshWeatherApp(response);
-    refreshWeatherIcons(response);
-    refreshHumidityWindApp(response);
-    getLunarInfo(response);
-  });
-}
-
-function handleSearchSubmit(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-bar");
-
-  searchCity(searchInput.value);
-}
-
-let searchFormElement = document.querySelector("#city-search");
-searchFormElement.addEventListener("submit", handleSearchSubmit);
-
 function formatWeekday(timestamp) {
   let date = new Date(timestamp * 1000);
 
@@ -190,50 +298,72 @@ function formatWeekday(timestamp) {
   return weekdays[date.getDay()];
 }
 
-function getForecast(city) {
-  let apiKey = "3cafb635b28334o0e324aet783836f5a";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&unit=metric`;
+// Search city + API call
 
-  axios(apiUrl).then(displayForecast);
-}
-
-function displayForecast(response) {
-  let forecastHtml = "";
-
-  response.data.daily.forEach(function (day, index) {
-    if (index >= 1 && index < 6) {
-      forecastHtml =
-        forecastHtml +
-        `<div class="bottom-box" id="forecast-box">
-                <p class="weekday" id="weekday">${formatWeekday(day.time)}</p>
-                <div class="bottom-box-icon" id="forecast-icon">
-                  <i class="qi-${getWeatherIcon(day.condition.icon)}"></i>
-                </div>
-                <p class="upper-text" id="forecast-high-temp">${Math.round(
-                  day.temperature.maximum
-                )}º</p>
-                <p class="bottom-text" id="forecast-low-temp">${Math.round(
-                  day.temperature.minimum
-                )}º</p>
-              </div>
+function callApi(city) {
+  let apiKey = "9QXYJ9VRU28LE273E9NEVSEX4";
+  let apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/last20days/next7days?iconSet=icons2&unitGroup=metric&elements=conditions%2Cdatetime%2CdatetimeEpoch%2Cname%2CresolvedAddress%2Clatitude%2Clongitude%2Ctempmax%2Ctempmin%2Ctemp%2Cfeelslike%2Chumidity%2Cwindspeed%2Cmoonphase%2Cmoonrise%2Cmoonset%2Cicon&include=days%2Ccurrent%2Cobs%2Cfcst&key=${apiKey}&options=nonulls&contentType=json
 `;
-    }
+
+  axios.get(apiUrl).then((response) => {
+    refreshGeneralInfo(response);
+    refreshWeatherApp(response);
+    refreshWeatherIcon(response);
+    displayForecast(response);
+    refreshHumidityWindApp(response);
+    refreshLunarApp(response);
+    refreshLunarIcon(response);
   });
-
-  let forecastElement = document.querySelector("#weather-forecast");
-  forecastElement.innerHTML = forecastHtml;
-
-  let highTemperature = Math.round(response.data.daily[0].temperature.maximum);
-  let lowTemperature = Math.round(response.data.daily[0].temperature.minimum);
-  let highTemperatureElement = document.querySelector("#current-high-temp");
-  let lowTemperatureElement = document.querySelector("#current-low-temp");
-  highTemperatureElement.innerHTML = `H: ${highTemperature}º`;
-  lowTemperatureElement.innerHTML = `L: ${lowTemperature}º`;
 }
 
-searchCity("Porto");
-getForecast("Porto");
-// displayForecast();
+function handleSearchSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-bar");
+
+  callApi(searchInput.value);
+}
+
+let searchFormElement = document.querySelector("#city-search");
+searchFormElement.addEventListener("submit", handleSearchSubmit);
+
+// EasterEgg
+function openEasterEgg() {
+  let easterEgg = confirm(
+    "🤠 yeeeeee-haaaaw! You found an easter egg! Do you want to proceed?"
+  );
+
+  if (easterEgg == true) {
+    let easterEggElement = document.querySelector("#easter-egg");
+    let lunarDisplayContainer = document.querySelector(
+      "#lunar-display-container"
+    );
+    let lunarInfoContainer = document.querySelector("#lunar-info-container");
+
+    easterEggElement.classList.remove("hidden");
+    lunarDisplayContainer.classList.add("hidden");
+    lunarInfoContainer.classList.add("hidden");
+  }
+
+  function closeEasterEgg() {
+    let easterEggElement = document.querySelector("#easter-egg");
+    let lunarDisplayContainer = document.querySelector(
+      "#lunar-display-container"
+    );
+    let lunarInfoContainer = document.querySelector("#lunar-info-container");
+
+    easterEggElement.classList.add("hidden");
+    lunarDisplayContainer.classList.remove("hidden");
+    lunarInfoContainer.classList.remove("hidden");
+  }
+
+  let easterEggImg = document.querySelector("#easter-egg");
+  easterEggImg.addEventListener("click", closeEasterEgg);
+}
+
+let easterEggBtn = document.querySelector("#easter-egg-btn");
+easterEggBtn.addEventListener("click", openEasterEgg);
+
+// App selector
 
 function launchLunarApp(event) {
   event.preventDefault();
@@ -300,3 +430,5 @@ function launchHumidityWindApp(event) {
 }
 let humidityWindAppBtn = document.querySelector("#humidity-wind-app-btn");
 humidityWindAppBtn.addEventListener("click", launchHumidityWindApp);
+
+callApi("Porto");

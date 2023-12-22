@@ -67,69 +67,76 @@
           </div>
           <!-- Structure for lunar app -->
           <div id="structure-lunar" class="hidden">
-            <div class="display-container" id="lunar-display-container">
-              <div class="icon-display" id="lunar-icon-display"></div>
-              <div class="info-display" id="lunar-info-display">
-                <span class="info-display-xl" id="lunar-info-display-xl"></span>
-                <span class="info-display-xs" id="lunar-info-display-xs"
-                  >%</span
-                >
+            <div id="easter-egg-container">
+              <img
+                src="media/hocus-pocus.webp"
+                alt=""
+                id="easter-egg"
+                class="hidden"
+              />
+              <div class="display-container" id="lunar-display-container">
+                <div class="icon-display" id="lunar-icon-display"></div>
+                <div class="info-display" id="lunar-info-display">
+                  <span
+                    class="info-display-xl"
+                    id="lunar-info-display-xl"
+                  ></span>
+                  <span class="info-display-xs" id="lunar-info-display-xs"
+                    >%</span
+                  >
+                </div>
               </div>
-            </div>
-            <div class="current-info" id="lunar-current-info"></div>
-            <div class="current-info-xs" id="lunar-current-info-xs">
-              <span class="current-moon-age" id="current-moon-age"
-                >AGE: 29.8 days</span
-              >
+              <div class="" id="lunar-info-container">
+                <div class="current-info" id="lunar-current-info"></div>
+                <div class="current-info-xs" id="lunar-current-info-xs">
+                  <span id="moonrise"></span>
+                  <span id="moonset"></span>
+                </div>
+              </div>
             </div>
             <div class="bottom-container" id="lunar-bottom-container">
               <div class="bottom-box" id="lunar-box-1">
-                <p class="weekday" id="weekday-box-1">Wed</p>
                 <div class="bottom-box-icon" id="lunar-bottom-box-icon-1">
-                  <i class="qi-150"></i>
-                  <div class="moonrise-arrow">
-                    <span class="material-symbols-rounded"> arrow_upward </span>
-                  </div>
-                </div>
-                <p class="upper-text" id="lunar-high-box-1"></p>
-                <p class="bottom-text" id="lunar-low-box-1"></p>
-              </div>
-              <div class="bottom-box" id="lunar-box-2">
-                <p class="weekday" id="weekday-box-2">Wed</p>
-                <div class="bottom-box-icon" id="lunar-bottom-box-icon-2">
                   <i class="qi-800"></i>
                 </div>
-                <p class="upper-text" id="lunar-high-box-2">12</p>
-                <p class="bottom-text" id="lunar-low-box-2">Dec</p>
+                <div id="moonphase-date-1">
+                  <p class="upper-text" id="lunar-high-box-1">12</p>
+                  <p class="bottom-text" id="lunar-low-box-1">Dec</p>
+                </div>
+              </div>
+              <div class="bottom-box" id="lunar-box-2">
+                <div class="bottom-box-icon" id="lunar-bottom-box-icon-2">
+                  <i class="qi-802"></i>
+                </div>
+                <div id="moonphase-date-2">
+                  <p class="upper-text" id="lunar-high-box-2">12</p>
+                  <p class="bottom-text" id="lunar-low-box-2">Dec</p>
+                </div>
               </div>
               <div class="bottom-box" id="lunar-box-3">
-                <p class="weekday" id="weekday-box-3">Wed</p>
                 <div class="bottom-box-icon" id="lunar-bottom-box-icon-3">
-                  <span>✨</span>
+                  <button id="easter-egg-btn">✨</button>
                 </div>
                 <p class="upper-text" id="lunar-high-box-3"></p>
                 <p class="bottom-text" id="lunar-low-box-3"></p>
               </div>
               <div class="bottom-box" id="lunar-box-4">
-                <p class="weekday" id="weekday-box-4">Wed</p>
                 <div class="bottom-box-icon" id="lunar-bottom-box-icon-4">
                   <i class="qi-804"></i>
                 </div>
-                <p class="upper-text" id="lunar-high-box-4">27</p>
-                <p class="bottom-text" id="lunar-low-box-4">Dec</p>
+                <div id="moonphase-date-4">
+                  <p class="upper-text" id="lunar-high-box-4">27</p>
+                  <p class="bottom-text" id="lunar-low-box-4">Dec</p>
+                </div>
               </div>
               <div class="bottom-box" id="lunar-box-5">
-                <p class="weekday" id="weekday-box-5">Wed</p>
                 <div class="bottom-box-icon" id="lunar-bottom-box-icon-5">
-                  <i class="qi-150"></i>
-                  <div class="moonset-arrow">
-                    <span class="material-symbols-rounded">
-                      arrow_downward
-                    </span>
-                  </div>
+                  <i class="qi-806"></i>
                 </div>
-                <p class="upper-text" id="lunar-high-box-5"></p>
-                <p class="bottom-text" id="lunar-low-box-5"></p>
+                <div id="moonphase-date-5">
+                  <p class="upper-text" id="lunar-high-box-5">27</p>
+                  <p class="bottom-text" id="lunar-low-box-5">Dec</p>
+                </div>
               </div>
             </div>
           </div>

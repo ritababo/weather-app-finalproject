@@ -20,8 +20,8 @@ function refreshHumidityWindApp(response) {
 function refreshWeatherApp(response) {
   console.log(response);
   let temperature = Math.round(response.data.currentConditions.temp);
-  let highTemperature = Math.round(response.data.days[21].tempmax);
-  let lowTemperature = Math.round(response.data.days[21].tempmin);
+  let highTemperature = Math.round(response.data.days[15].tempmax);
+  let lowTemperature = Math.round(response.data.days[15].tempmin);
 
   let temperatureElement = document.querySelector("#weather-info-display-xl");
   let currentInfo = document.querySelector("#weather-current-info");
@@ -99,8 +99,8 @@ function displayForecast(response) {
 }
 
 function refreshLunarApp(response) {
-  let moonriseTime = response.data.days[21]?.moonrise;
-  let moonsetTime = response.data.days[21]?.moonset;
+  let moonriseTime = response.data.days[15]?.moonrise;
+  let moonsetTime = response.data.days[15]?.moonset;
   let currentMoonPhase = response.data.currentConditions.moonphase;
 
   let moonphaseElement = document.querySelector("#lunar-info-display-xl");
@@ -315,7 +315,7 @@ function formatWeekday(timestamp) {
 
 function callApi(city) {
   let apiKey = "9QXYJ9VRU28LE273E9NEVSEX4";
-  let apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/last20days/next7days?iconSet=icons2&unitGroup=metric&elements=conditions%2Cdatetime%2CdatetimeEpoch%2Cname%2CresolvedAddress%2Clatitude%2Clongitude%2Ctempmax%2Ctempmin%2Ctemp%2Cfeelslike%2Chumidity%2Cwindspeed%2Cmoonphase%2Cmoonrise%2Cmoonset%2Cicon&include=days%2Ccurrent%2Cobs%2Cfcst&key=${apiKey}&options=nonulls&contentType=json
+  let apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/last14days/next7days?iconSet=icons2&unitGroup=metric&elements=conditions%2Cdatetime%2CdatetimeEpoch%2Cname%2CresolvedAddress%2Clatitude%2Clongitude%2Ctempmax%2Ctempmin%2Ctemp%2Cfeelslike%2Chumidity%2Cwindspeed%2Cmoonphase%2Cmoonrise%2Cmoonset%2Cicon&include=days%2Ccurrent%2Cobs%2Cfcst&key=${apiKey}&options=nonulls&contentType=json
 `;
 
   axios.get(apiUrl).then((response) => {

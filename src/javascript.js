@@ -113,8 +113,21 @@ function refreshLunarApp(response) {
     currentMoonPhase,
     "description"
   ).toLowerCase();
-  moonriseElement.innerHTML = `moonrise: ${moonriseTime.slice(0, 5)}`;
-  moonsetElement.innerHTML = `moonset: ${moonsetTime.slice(0, 5)}`;
+
+  if (moonriseTime !== null) {
+    moonriseElement.innerHTML = `moonrise: ${moonriseTime.slice(0, 5)}`;
+  } else {
+    moonriseElement.innerHTML = "moonrise: N/A";
+  }
+
+  if (moonsetTime !== null) {
+    moonsetElement.innerHTML = `moonset: ${moonsetTime.slice(0, 5)}`;
+  } else {
+    moonsetElement.innerHTML = "moonset: N/A";
+  }
+
+  // moonriseElement.innerHTML = `moonrise: ${moonriseTime.slice(0, 5)}`;
+  // moonsetElement.innerHTML = `moonset: ${moonsetTime.slice(0, 5)}`;
   findMoonPhasesDates(response);
 }
 

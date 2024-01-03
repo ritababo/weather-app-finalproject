@@ -99,8 +99,8 @@ function displayForecast(response) {
 }
 
 function refreshLunarApp(response) {
-  let moonriseTime = response.data.days[21].moonrise;
-  let moonsetTime = response.data.days[21].moonset;
+  let moonriseTime = response.data.days[21]?.moonrise;
+  let moonsetTime = response.data.days[21]?.moonset;
   let currentMoonPhase = response.data.currentConditions.moonphase;
 
   let moonphaseElement = document.querySelector("#lunar-info-display-xl");
@@ -114,13 +114,13 @@ function refreshLunarApp(response) {
     "description"
   ).toLowerCase();
 
-  if (moonriseTime !== null) {
+  if (moonriseTime !== undefined && moonriseTime !== null) {
     moonriseElement.innerHTML = `moonrise: ${moonriseTime.slice(0, 5)}`;
   } else {
     moonriseElement.innerHTML = "moonrise: N/A";
   }
 
-  if (moonsetTime !== null) {
+  if (moonsetTime !== undefined && moonsetTime !== null) {
     moonsetElement.innerHTML = `moonset: ${moonsetTime.slice(0, 5)}`;
   } else {
     moonsetElement.innerHTML = "moonset: N/A";

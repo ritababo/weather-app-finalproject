@@ -101,7 +101,7 @@ function displayForecast(response) {
 function refreshLunarApp(response) {
   let moonriseTime = response.data.days[15]?.moonrise;
   let moonsetTime = response.data.days[15]?.moonset;
-  let currentMoonPhase = response.data.currentConditions.moonphase;
+  let currentMoonPhase = Math.round(response.data.currentConditions.moonphase);
 
   let moonphaseElement = document.querySelector("#lunar-info-display-xl");
   let currentInfo = document.querySelector("#lunar-current-info");
@@ -193,21 +193,15 @@ function getLunarPhase(condition, type) {
 }
 
 function findMoonPhasesDates(response) {
-  let filterNewMoon = response.data.days.filter((day) => day.moonphase === 0);
-  let filterFirstQuarter = response.data.days.filter(
-    (day) => day.moonphase === 0.25
-  );
-  let filterFullMoon = response.data.days.filter(
-    (day) => day.moonphase === 0.5
-  );
-  let filterLastQuarter = response.data.days.filter(
-    (day) => day.moonphase === 0.75
-  );
+  let filterNewMoon = filterAndSort(response.data.days, 0);
+  let filterFirstQuarter = filterAndSort(response.data.days, 0.25);
+  let filterFullMoon = filterAndSort(response.data.days, 0.5);
+  let filterLastQuarter = filterAndSort(response.data.days, 0.75);
 
-  let newMoonDates = filterNewMoon.map((day) => day.datetimeEpoch);
-  let firstQuarterDates = filterFirstQuarter.map((day) => day.datetimeEpoch);
-  let fullMoonDates = filterFullMoon.map((day) => day.datetimeEpoch);
-  let lastQuarterDates = filterLastQuarter.map((day) => day.datetimeEpoch);
+  let newMoonDates = getDates(filterNewMoon);
+  let firstQuarterDates = getDates(filterFirstQuarter);
+  let fullMoonDates = getDates(filterFullMoon);
+  let lastQuarterDates = getDates(filterLastQuarter);
 
   let moonphases = [
     newMoonDates,
@@ -224,59 +218,180 @@ function findMoonPhasesDates(response) {
   newMoonElement.innerHTML = `<p class="upper-text" id="lunar-high-box-1">${formatDay(
     moonphases[0]
   )}</p>
-                  <p class="bottom-text" id="lunar-low-box-1">${formatMonth(
-                    moonphases[0]
-                  )}</p>`;
+  <p class="bottom-text" id="lunar-low-box-1">${formatMonth(
+    moonphases[0]
+  )}</p>`;
   firstQuarterElement.innerHTML = `<p class="upper-text" id="lunar-high-box-2">${formatDay(
     moonphases[1]
   )}</p>
-                  <p class="bottom-text" id="lunar-low-box-2">${formatMonth(
-                    moonphases[1]
-                  )}</p>`;
+  <p class="bottom-text" id="lunar-low-box-2">${formatMonth(
+    moonphases[1]
+  )}</p>`;
   fullMoonElement.innerHTML = `<p class="upper-text" id="lunar-high-box-4">${formatDay(
     moonphases[2]
   )}</p>
-                  <p class="bottom-text" id="lunar-low-box-4">${formatMonth(
-                    moonphases[2]
-                  )}</p>`;
+  <p class="bottom-text" id="lunar-low-box-4">${formatMonth(
+    moonphases[2]
+  )}</p>`;
   lastQuarterElement.innerHTML = `<p class="upper-text" id="lunar-high-box-5">${formatDay(
     moonphases[3]
   )}</p>
-                  <p class="bottom-text" id="lunar-low-box-5">${formatMonth(
-                    moonphases[3]
-                  )}</p>`;
+  <p class="bottom-text" id="lunar-low-box-5">${formatMonth(
+    moonphases[3]
+  )}</p>`;
 
-  console.log(formatMonth(moonphases[3]));
+  console.log(formatMonth(moonphases[3])); // Example usage
 }
 
-function formatMonth(timestamp) {
-  let date = new Date(timestamp * 1000);
-
-  let months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  return months[date.getMonth()];
+function filterAndSort(days, moonphase) {
+  let filteredDates = days.filter((day) => day.moonphase === moonphase);
+  // Sort by datetimeEpoch in descending order
+  filteredDates.sort((a, b) => b.datetimeEpoch - a.datetimeEpoch);
+  return filteredDates;
 }
 
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-
-  let day = date.getDate();
-
-  return day;
+function getDates(filteredDates) {
+  // Only get the datetimeEpoch value of the first element (highest array index)
+  return filteredDates.length > 0 ? [filteredDates[0].datetimeEpoch] : [];
 }
+
+function formatMonth(timestamps) {
+  if (Array.isArray(timestamps)) {
+    return timestamps.map((timestamp) => {
+      let date = new Date(timestamp * 1000);
+      let months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      return months[date.getMonth()];
+    });
+  } else {
+    let date = new Date(timestamps * 1000);
+    let months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    return months[date.getMonth()];
+  }
+}
+
+function formatDay(timestamps) {
+  if (Array.isArray(timestamps)) {
+    return timestamps.map((timestamp) => {
+      let date = new Date(timestamp * 1000);
+      return date.getDate();
+    });
+  } else {
+    let date = new Date(timestamps * 1000);
+    return date.getDate();
+  }
+}
+
+// function findMoonPhasesDates(response) {
+//   let filterNewMoon = response.data.days.filter((day) => day.moonphase === 0);
+//   let filterFirstQuarter = response.data.days.filter(
+//     (day) => day.moonphase === 0.25
+//   );
+//   let filterFullMoon = response.data.days.filter(
+//     (day) => day.moonphase === 0.5
+//   );
+//   let filterLastQuarter = response.data.days.filter(
+//     (day) => day.moonphase === 0.75
+//   );
+
+//   let newMoonDates = filterNewMoon.map((day) => day.datetimeEpoch);
+//   let firstQuarterDates = filterFirstQuarter.map((day) => day.datetimeEpoch);
+//   let fullMoonDates = filterFullMoon.map((day) => day.datetimeEpoch);
+//   let lastQuarterDates = filterLastQuarter.map((day) => day.datetimeEpoch);
+
+//   let moonphases = [
+//     newMoonDates,
+//     firstQuarterDates,
+//     fullMoonDates,
+//     lastQuarterDates,
+//   ];
+
+//   let newMoonElement = document.querySelector("#moonphase-date-1");
+//   let firstQuarterElement = document.querySelector("#moonphase-date-2");
+//   let fullMoonElement = document.querySelector("#moonphase-date-4");
+//   let lastQuarterElement = document.querySelector("#moonphase-date-5");
+
+//   newMoonElement.innerHTML = `<p class="upper-text" id="lunar-high-box-1">${formatDay(
+//     moonphases[0]
+//   )}</p>
+//                   <p class="bottom-text" id="lunar-low-box-1">${formatMonth(
+//                     moonphases[0]
+//                   )}</p>`;
+//   firstQuarterElement.innerHTML = `<p class="upper-text" id="lunar-high-box-2">${formatDay(
+//     moonphases[1]
+//   )}</p>
+//                   <p class="bottom-text" id="lunar-low-box-2">${formatMonth(
+//                     moonphases[1]
+//                   )}</p>`;
+//   fullMoonElement.innerHTML = `<p class="upper-text" id="lunar-high-box-4">${formatDay(
+//     moonphases[2]
+//   )}</p>
+//                   <p class="bottom-text" id="lunar-low-box-4">${formatMonth(
+//                     moonphases[2]
+//                   )}</p>`;
+//   lastQuarterElement.innerHTML = `<p class="upper-text" id="lunar-high-box-5">${formatDay(
+//     moonphases[3]
+//   )}</p>
+//                   <p class="bottom-text" id="lunar-low-box-5">${formatMonth(
+//                     moonphases[3]
+//                   )}</p>`;
+
+//   console.log(formatMonth(moonphases[3]));
+// }
+
+// function formatMonth(timestamp) {
+//   let date = new Date(timestamp * 1000);
+
+//   let months = [
+//     "Jan",
+//     "Feb",
+//     "Mar",
+//     "Apr",
+//     "May",
+//     "Jun",
+//     "Jul",
+//     "Aug",
+//     "Sep",
+//     "Oct",
+//     "Nov",
+//     "Dec",
+//   ];
+
+//   return months[date.getMonth()];
+// }
+
+// function formatDay(timestamp) {
+//   let date = new Date(timestamp * 1000);
+
+//   let day = date.getDate();
+
+//   return day;
+// }
 
 function formatDate(date) {
   let hours = date.getHours();
